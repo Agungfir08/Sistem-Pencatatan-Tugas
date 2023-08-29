@@ -1,8 +1,11 @@
-import Express from "express";
+import Express  from 'express';
+import taskRouter from './src/routes/task.route.js';
 
 const app = Express();
-const port = 5000;
+app.use(Express.json())
 
-app.listen(port, () => {
-  console.log(`your App Running in port : ${port}`);
-});
+app.use(taskRouter)
+
+app.listen(4000, ()=>{
+  console.log('connected to server')
+})
