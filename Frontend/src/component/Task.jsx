@@ -4,9 +4,9 @@ export default function Task() {
   return (
     <div class="flex justify-center">
       <div class="flex justify-around flex-col w-80 h-52 p-6 bg-white border border-gray-200 rounded-lg shadow">
-        <div class="flex justify-between items-center">
-          <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">
-            Title
+        <div class="flex justify-between items-center ">
+          <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 truncate w-32">
+            Title adfafasfjasfhj asdfasfjaks asdfafa asdfas
           </h5>
           <button
             id="dropdownButton"
@@ -52,10 +52,12 @@ export default function Task() {
           </div>
         </div>
 
-        <p class="font-normal text-gray-700 ">
-          Here are the biggest enterprise technology acquisitions of 2021 so
-          far, in reverse chronological order.
-        </p>
+        <div class="flex items-center ">
+          <p class="font-normal text-gray-700 max-h-24 flex items-start line-clamp-4">
+            Here are the biggest enterprise technology acquisitions of 2021 so
+            far, in reverse chronological order.
+          </p>
+        </div>
         <p class="font-normal text-gray-700 flex justify-end">24-08-2023</p>
       </div>
     </div>
