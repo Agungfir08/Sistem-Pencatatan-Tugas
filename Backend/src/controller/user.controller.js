@@ -11,10 +11,13 @@ const register = async (req, res) => {
     // If email Already in database
     const userExist = await user.findAll({
       where: {
-        email: email,
+        email: req.body.email,
       },
     });
-    // if (userExist) return res.json("Email Already Used");
+    if (userExist[0])
+      return res.status(409).json({
+        message: "Email Already Used",
+      });
 
     // email never used
     await user.create({
@@ -40,27 +43,32 @@ const login = async (req, res) => {
         email: req.body.email,
       },
     });
-    if (!userExist) return res.json("Email Not Found");
 
     const id = userExist[0].d;
     const name = userExist[0].name;
     const email = userExist[0].email;
-    // const pass = req.body.password;
 
     const match = await bcyrpt.compare(
       req.body.password,
       userExist[0].password
     );
-    if (!match) return res.json("Wrong Password");
+    if (!match)
+      res.status(400).json({
+        message: "Wrong Password",
+      });
 
     const token = jwt.sign({ id, name, email }, process.env.ACCESS_TOKEN, {
       expiresIn: "20s",
     });
+    res.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
 
-    res.code(201).json({ User: userExist, AccessToken: token });
+    res.status(200).json({ token: token });
   } catch (error) {
-    res.json({
-      error: error,
+    res.status(400).json({
+      message: "Email Not Found",
     });
   }
 };
