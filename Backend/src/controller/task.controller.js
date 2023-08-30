@@ -7,28 +7,30 @@ export const getAllTask = async (req, res) => {
       return res
         .status(401)
         .json({message: 'user id not included!'})
-      }
+    }
+
     await Task.findAll({
       where:{
         user_id: req.body.user_id
-      }
+      },
+      attributes:['id', 'judul', 'deskripsi', 'deadline']
     })
-    .then((result)=>{
-      if(result.length > 0){
-        return res
-          .status(200)
-          .json({
-            data: result
+      .then((result)=>{
+        if(result.length > 0){
+          return res
+            .status(200)
+            .json({
+              data: result
 
-          })
-      }else{
-        return res
-          .status(404)
-          .json({
-            message: 'Data not found',
-            statusCode: 404,
-          })
-      }
+            })
+        }else{
+          return res
+            .status(404)
+            .json({
+              message: 'Data not found',
+              statusCode: 404,
+            })
+        }
     })
   }catch(err){
     return res

@@ -11,6 +11,7 @@ const user = database.define(
       validate: {
         isEmail: true,
       },
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
