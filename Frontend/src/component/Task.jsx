@@ -32,7 +32,7 @@ export default function Task() {
         </button>
         <div
           id="dropdown"
-          class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+          class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-auto ">
           <ul
             class="py-2 text-sm text-gray-700 "
             aria-labelledby="dropdownDefaultButton">
@@ -41,7 +41,28 @@ export default function Task() {
                 href="#"
                 class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 ">
                 <svg
-                  className="w-6 h-6 text-gray-800 stroke-[#28a745] "
+                  className="w-5 h-5 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 21 21">
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279"
+                  />
+                </svg>
+                <span class="font-semibold ">Edit</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 ">
+                <svg
+                  className="w-5 h-5 text-gray-800 stroke-[#28a745] "
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -61,7 +82,7 @@ export default function Task() {
                 href="#"
                 class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 ">
                 <svg
-                  className="w-6 h-6 text-gray-800 stroke-red-600"
+                  className="w-5 h-5 text-gray-800 stroke-red-600"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
