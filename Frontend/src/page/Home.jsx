@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useState } from "react";
+import { Select, Option } from "@material-tailwind/react";
+import 'flowbite';
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
+  
     return(
         <>
             <div className="ml-72 mt-6 mr-6 flex justify-between">
@@ -18,11 +21,19 @@ export default function Home() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 1v16M1 9h16" />
                         </svg>
                     </button>
-
+      
                     <button className="mx-2 py-2 px-4 border-solid border-2 border-green-500 hover:bg-[#28a745] group">
+                      
+                      {/* <Select className="mx-2 py-2 px-4 border-solid border-2 border-green-500 hover:bg-[#28a745] group"> */}
                       <svg className="w-3 h-3 group-hover:stroke-white stroke-[#28a745]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.85 1.1A1.99 1.99 0 0 0 17.063 0H2.937a2 2 0 0 0-1.566 3.242L6.99 9.868 7 14a1 1 0 0 0 .4.8l4 3A1 1 0 0 0 13 17l.01-7.134 5.66-6.676a1.99 1.99 0 0 0 .18-2.09Z" />
                       </svg>
+                      {/* <Option>Material Tailwind HTML</Option>
+                        <Option>Material Tailwind React</Option>
+                        <Option>Material Tailwind Vue</Option>
+                        <Option>Material Tailwind Angular</Option>
+                        <Option>Material Tailwind Svelte</Option>
+                      </Select> */}
                     </button>
                 </div>
 
