@@ -1,5 +1,6 @@
 import { Task } from "../model/task.model.js"
 import user from "../model/user.model.js"
+import schedule from 'node-schedule'
 
 export const getAllTask = async (req, res) => {
   try{
@@ -28,7 +29,7 @@ export const getAllTask = async (req, res) => {
             .status(404)
             .json({
               message: 'Data not found',
-              statusCode: 404,
+              // statusCode: 404,
             })
         }
     })
@@ -37,7 +38,7 @@ export const getAllTask = async (req, res) => {
       .status(500)
       .json({
         message:err.message,
-        statusCode: 500
+        // statusCode: 500
     })
   }
 }
@@ -60,19 +61,22 @@ export const createTask = async (req, res)=>{
       .status(400)
       .json({
         message: err.message,
-        statusCode: 400
+        // statusCode: 400
       })
   }
 }
 
 export const updateTask = async (req, res)=>{
-  if(!req.params.id){
-    return res
-      .status(400)
-      .json({
-        message: "task id has to be included"
-      })
-  }
+  if( !req.body.user_id ||
+      !req.body.judul ||
+      !req.body.deadline 
+    ){
+      return res
+        .status(400)
+        .json({
+          message: "user_id, judul, deadline has to be included"
+        })
+    }
   try{
     await Task.update({
       user_id: req.body.user_id,
@@ -91,18 +95,12 @@ export const updateTask = async (req, res)=>{
   }catch(err){
     return res
       .status(400)
-      .message({message: err.message})
+      .json({message: err.message})
   }
 }
 
 export const deleteTask = async (req, res) =>{
-  if(!req.params.id){
-    return res
-      .status(400)
-      .json({
-        message: "task id has to be included"
-      })
-  }
+  
   try{
     await Task.destroy({
       trucante:true,
@@ -114,6 +112,22 @@ export const deleteTask = async (req, res) =>{
       .status(200)
       .json({message: "Task deleted successfully"})
   }catch(err){
+    return res
+      .status(500)
+      .json({message: err.message})
+  }
+}
+
+export const getTaskNotification = async(req, res) =>{
+  try{
+    const dataTask = await Task.findAll({
+      where:{
+        user_id: req.body.user_id
+      },
+      attributes:['id', 'judul', 'deskripsi', 'deadline']
+    })
+    console.log(data)
+  } catch (err){
     return res
       .status(500)
       .json({message: err.message})
