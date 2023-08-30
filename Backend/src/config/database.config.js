@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
-const database = new Sequelize('task_list', 'root', '', {
-  host: 'localhost',
+const database = new Sequelize('sql12643089', 'sql12643089', 'gtwB8A5jCX', {
+  host: 'sql12.freesqldatabase.com',
   dialect: 'mysql',
 })
 
