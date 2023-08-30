@@ -5,9 +5,5 @@ import Sidebar from "./component/Sidebar";
 import Task from "./component/Task";
 
 export default function App() {
-  return (
-    // <Login />
-    // <Register />
-    <Task />
-  );
+  return <Task />;
 }
