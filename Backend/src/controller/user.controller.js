@@ -44,9 +44,9 @@ const login = async (req, res) => {
       },
     });
 
-    const id = userExist[0].id;
-    const name = userExist[0].name;
-    const email = userExist[0].email;
+
+    const { id, name, email } = userExist[0];
+
 
     const match = await bcyrpt.compare(
       req.body.password,
@@ -54,6 +54,7 @@ const login = async (req, res) => {
     );
     if (!match)
       res.status(400).json({
+        status: 400,
         message: "Wrong Password",
       });
 
@@ -66,11 +67,15 @@ const login = async (req, res) => {
     });
 
     res.status(200).json({
+      status: 200,
+      message: "Login Berhasil",
       id: userExist[0].id,
+      name: userExist[0].name,
       token: token,
     });
   } catch (error) {
     res.status(400).json({
+      status: 400,
       message: "Email Not Found",
     });
   }
@@ -86,9 +91,6 @@ const logout = (req, res) => {
 
 const testMiddleware = (req, res) => {
   console.log("Midlleware");
-  // res.json({
-  //   message: "middleware",
-  // });
 };
 
 export { register, login, testMiddleware, logout };
