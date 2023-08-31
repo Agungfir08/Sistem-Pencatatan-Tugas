@@ -44,9 +44,9 @@ const login = async (req, res) => {
       },
     });
 
-    const id = userExist[0].d;
-    const name = userExist[0].name;
-    const email = userExist[0].email;
+
+    const { id, name, email } = userExist[0];
+
 
     const match = await bcyrpt.compare(
       req.body.password,
@@ -54,23 +54,43 @@ const login = async (req, res) => {
     );
     if (!match)
       res.status(400).json({
+        status: 400,
         message: "Wrong Password",
       });
 
     const token = jwt.sign({ id, name, email }, process.env.ACCESS_TOKEN, {
-      expiresIn: "20s",
+      expiresIn: "1w",
     });
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
+      expires: new Date(Date.now() + 3600000),
     });
 
-    res.status(200).json({ token: token });
+    res.status(200).json({
+      status: 200,
+      message: "Login Berhasil",
+      id: userExist[0].id,
+      name: userExist[0].name,
+      token: token,
+    });
   } catch (error) {
     res.status(400).json({
+      status: 400,
       message: "Email Not Found",
     });
   }
 };
 
-export { register, login };
+const logout = (req, res) => {
+  const token = req.cookies.token;
+  if (!token) res.sendStatus(403);
+
+  res.clearCookie("token");
+  return res.sendStatus(200);
+};
+
+const testMiddleware = (req, res) => {
+  console.log("Midlleware");
+};
+
+export { register, login, testMiddleware, logout };
