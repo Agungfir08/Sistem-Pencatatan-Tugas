@@ -56,9 +56,9 @@ export default function Sidebar() {
               </Link>
             </li>
             <li>
-              <a
-                href="#"
-                class="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
+              <Link
+                to={"/notfound"}
+                className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
                   aria-hidden="true"
@@ -75,11 +75,11 @@ export default function Sidebar() {
                 <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
                   Security
                 </span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to={"/profile"}
                 class="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
@@ -97,7 +97,7 @@ export default function Sidebar() {
                 <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
                   Profile
                 </span>
-              </a>
+              </Link>
             </li>
             <li>
               <button
