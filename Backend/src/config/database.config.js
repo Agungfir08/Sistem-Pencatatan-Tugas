@@ -3,6 +3,7 @@ import Sequelize from "sequelize";
 const database = new Sequelize("task_list", "root", "", {
   host: "localhost",
   dialect: "mysql",
+  dialectModule: mysql2
 });
 
 try {
