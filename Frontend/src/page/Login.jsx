@@ -35,7 +35,7 @@ export default function Login() {
       )
       .then((res) => {
         if (res.data.message === "Login Berhasil") {
-          alert("login berhasil");
+          console.log(res.data);
         }
       })
       .catch((err) => {
