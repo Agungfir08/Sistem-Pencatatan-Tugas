@@ -1,25 +1,27 @@
-// import React from "react";
-// import Login from "./page/Login";
+import Login from "./page/Login";
 import Home from "./page/Home";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./component/Sidebar";
 import Notification from "./page/Notification";
-// import Modal from "./page/Home2";
-// import Register from "./page/Register";
-
-// import Tes from "./page/tes";
+import Register from "./page/Register";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
 
 export default function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Sidebar />}>
+        <Route index element={<Home />} />
+        <Route path="/notification" element={<Notification />} />
+      </Route>
+    )
+  );
   return (
     <>
-      {/* <Login /> */}
-        {/* <Register /> */}
-      {/* <Profile /> */}
-      <Sidebar />
-      {/* <Home /> */}
-      <Notification />
-      {/* <Modal /> */}
-      {/* <Tes /> */}
+      <RouterProvider router={router} />
     </>
   );
-    
 }
