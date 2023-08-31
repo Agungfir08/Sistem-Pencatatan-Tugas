@@ -1,19 +1,12 @@
 import React from "react";
+import "flowbite";
 
-export default function Task() {
-  const Dropdown = () => {
-    <div class="flex flex-col">
-      <ul>
-        <li>Done</li>
-        <li>Delete</li>
-      </ul>
-    </div>;
-  };
+export default function Task({ task }) {
   return (
     <div class="flex justify-around flex-col w-80 h-52 p-6 bg-white border border-gray-200 rounded-lg shadow me-3 mt-5">
       <div class="flex justify-between items-center ">
         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 truncate w-32">
-          Title adfafasfjasfhj asdfasfjaks asdfafa asdfas
+          {task.judul}
         </h5>
         <button
           id="dropdownDefaultButton"
@@ -104,11 +97,10 @@ export default function Task() {
 
       <div class="flex items-center ">
         <p class="font-normal text-gray-700 max-h-24 flex items-start line-clamp-4">
-          Here are the biggest enterprise technology acquisitions of 2021 so
-          far, in reverse chronological order.
+          {task.deskripsi}
         </p>
       </div>
-      <p class="font-normal text-gray-700 flex justify-end">24-08-2023</p>
+      <p class="font-normal text-gray-700 flex justify-end">{task.deadline}</p>
     </div>
   );
 }

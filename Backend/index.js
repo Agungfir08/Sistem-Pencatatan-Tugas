@@ -8,11 +8,16 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 const app = Express();
 app.use(Express.json());
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookieParser());
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+  })
+);
 app.use(taskRouter);
 app.use(userRouter);
 
-app.listen(4000, () => {
+app.listen(4999, () => {
   console.log("connected to server");
 });

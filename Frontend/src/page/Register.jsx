@@ -1,6 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+axios.defaults.withCredentials = true;
 
 export default function Register() {
+  const [data, setData] = useState({
+    name: undefined,
+    email: undefined,
+    password: undefined,
+    confirmPassword: undefined,
+    gender: undefined,
+  });
+
+  function handleChange(e) {
+    setData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  }
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  function submit(e) {
+    e.preventDefault();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios
+      .post(
+        "http://localhost:4000/register",
+        {
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          gender: data.gender,
+        },
+        config
+      )
+      .then((res) => {
+        if (res.data.message === "User Create Success") {
+          alert("Register berhasil");
+        }
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  }
+
   return (
     <section class="bg-gray-50">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -9,7 +59,7 @@ export default function Register() {
             <div class="flex justify-center">
               <h1 class="text-4xl font-bold text-black-900">Register</h1>
             </div>
-            <form class="space-y-3.5" action="#">
+            <form class="space-y-3.5" onSubmit={submit}>
               <div>
                 <label
                   for="email"
@@ -22,7 +72,7 @@ export default function Register() {
                   id="email"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
                   placeholder="Enter your email"
-                  required=""
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -37,7 +87,7 @@ export default function Register() {
                   id="name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
                   placeholder="Enter your name"
-                  required=""
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -48,7 +98,8 @@ export default function Register() {
                 </label>
                 <select
                   id="gender"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent">
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                  onChange={handleChange}>
                   <option value="" disabled selected>
                     Select your gender
                   </option>
@@ -68,22 +119,22 @@ export default function Register() {
                   id="password"
                   placeholder="Enter your password"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
-                  required=""
+                  onChange={handleChange}
                 />
               </div>
               <div>
                 <label
-                  for="confirm-password"
+                  for="confirmPassword"
                   class="block mb-2 text-sm font-medium text-black-900">
                   Confirm password
                 </label>
                 <input
-                  type="confirm-password"
-                  name="confirm-password"
-                  id="confirm-password"
+                  type="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
                   placeholder="Enter your confirm password"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
-                  required=""
+                  onChange={handleChange}
                 />
               </div>
               <button
@@ -94,11 +145,11 @@ export default function Register() {
               <div class="flex justify-center">
                 <p class="text-sm font-light text-gray-500">
                   Already have an account?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    to="/login"
                     class="font-medium text-green-400 hover:underline">
                     Login
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>
