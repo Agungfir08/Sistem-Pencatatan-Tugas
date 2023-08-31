@@ -58,11 +58,11 @@ const login = async (req, res) => {
       });
 
     const token = jwt.sign({ id, name, email }, process.env.ACCESS_TOKEN, {
-      expiresIn: "20s",
+      expiresIn: "200s",
     });
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
+      expires: new Date(Date.now() + 3600000),
     });
 
     res.status(200).json({ token: token });
@@ -73,4 +73,19 @@ const login = async (req, res) => {
   }
 };
 
-export { register, login };
+const logout = (req, res) => {
+  const token = req.cookies.token;
+  if (!token) res.sendStatus(403);
+
+  res.clearCookie("token");
+  return res.sendStatus(200);
+};
+
+const testMiddleware = (req, res) => {
+  console.log("Midlleware");
+  // res.json({
+  //   message: "middleware",
+  // });
+};
+
+export { register, login, testMiddleware, logout };
