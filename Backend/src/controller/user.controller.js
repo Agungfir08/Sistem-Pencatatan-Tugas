@@ -53,7 +53,7 @@ const login = async (req, res) => {
       userExist[0].password
     );
     if (!match)
-      res.status(400).json({
+      return res.status(400).json({
         status: 400,
         message: "Wrong Password",
       });
@@ -64,19 +64,20 @@ const login = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       expires: new Date(Date.now() + 3600000),
-    });
-
-    res.status(200).json({
+    })
+    .status(200)
+    .json({
       status: 200,
       message: "Login Berhasil",
       id: userExist[0].id,
       name: userExist[0].name,
       token: token,
     });
+
   } catch (error) {
     res.status(400).json({
       status: 400,
-      message: "Email Not Found",
+      message: error.message,
     });
   }
 };
