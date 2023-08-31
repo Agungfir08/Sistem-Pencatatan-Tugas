@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 axios.defaults.withCredentials=true
 import { Link } from "react-router-dom";
 
+axios.defaults.withCredentials = true;
 export default function Login() {
   let navigate = useNavigate();
   const [data, setData] = useState({
@@ -38,12 +39,11 @@ export default function Login() {
         },
         config
       )
-      .then(
-        // if (res.data.message === "Login Berhasil") {
-        //   console.log(res.data);
-        // }
-            navigate('/')
-      )
+      .then((res) => {
+        if (res.data.message === "Login Berhasil") {
+          alert(res.data.token);
+        }
+      })
       .catch((err) => {
         alert(err.message);
       });

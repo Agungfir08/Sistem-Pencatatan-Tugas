@@ -8,16 +8,79 @@ axios.defaults.withCredentials=true
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [addTask, setAddTask] = useState({
+    judul: undefined,
+    deskripsi: undefined,
+    deadline: undefined,
+  });
+
+  function handleChange(e) {
+    if (e.target.id === "date" || e.target.id === "time") {
+      setAddTask((prev) => ({
+        ...prev,
+        [e.target.id]: e.target.value,
+        deadline:
+          (e.target.id === "date" ? e.target.value : addTask.date) +
+          " " +
+          (e.target.id === "time" ? e.target.value : addTask.time),
+      }));
+    } else {
+      setAddTask((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    }
+  }
+  useEffect(() => {
+    console.log(addTask);
+  }, [addTask, 1000]);
+
+  function openModal() {
+    setShowModal(true);
+  }
+
+  function closeModal() {
+    setShowModal(false);
+    setAddTask({
+      judul: undefined,
+      deskripsi: undefined,
+      deadline: undefined,
+    });
+  }
 
   function getTask() {
     axios
-      .get(`http://localhost:4999/task`)
+      .get(`http://localhost:4000/task`)
       .then((res) => {
         setTasks(res.data.data);
         console.log(res.data.data);
       })
       .catch((err) => {
-        alert(err);
+        alert(err.message);
+      });
+  }
+
+  function createTask(e) {
+    e.preventDefault();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios
+      .post(
+        "http://localhost:4000/task",
+        {
+          judul: addTask.judul,
+          deskripsi: addTask.deskripsi,
+          deadline: addTask.deadline,
+        },
+        config
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        alert(err.message);
       });
   }
 
@@ -33,7 +96,7 @@ export default function Home() {
           <button
             className="p-2 border-solid border-2 border-[#28a745] hover:bg-[#28a745] group"
             type="button"
-            onClick={() => setShowModal(true)}>
+            onClick={openModal}>
             <svg
               className="w-4 h-4 group-hover:stroke-white stroke-[#28a745]"
               aria-hidden="true"
@@ -109,12 +172,12 @@ export default function Home() {
                     <h3 className="text-2xl font-bold">Tugas</h3>
                     <button
                       className="bg-transparent border-0 text-black float-right"
-                      onClick={() => setShowModal(false)}>
+                      onClick={closeModal}>
                       <span className="text-black h-6 w-6 text-xl">x</span>
                     </button>
                   </div>
-                  <div className="relative p-6 flex-auto">
-                    <form className="w-full max-w-lg" onSubmit={tesEndpoint}>
+                  <div className="relative px-6 pt-6 flex-auto">
+                    <form className="w-full max-w-lg" onSubmit={createTask}>
                       <div className="flex flex-wrap -mx-3 mb-2">
                         <div className="w-full px-3 mb-6 md:mb-0">
                           <label
@@ -125,7 +188,9 @@ export default function Home() {
                           <input
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             type="text"
+                            id="judul"
                             placeholder="Add title"
+                            onChange={handleChange}
                           />
                           {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
                         </div>
@@ -140,7 +205,9 @@ export default function Home() {
                           <input
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             type="date"
+                            id="date"
                             placeholder="Set date"
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -152,7 +219,9 @@ export default function Home() {
                           <input
                             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             type="time"
+                            id="time"
                             placeholder="Set time"
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
@@ -169,27 +238,28 @@ export default function Home() {
                             className="block p-2.5 w-full text-sm text-gray-500 bg-gray-200 rounded-lg border border-gray-300 leading-tight focus:outline-none focus:bg-white"
                             defaultValue={""}
                             type="text"
+                            id="deskripsi"
                             placeholder="Add description"
+                            onChange={handleChange}
                           />
                           {/* <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="Add description" /> */}
                           {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
                         </div>
                       </div>
+                      <div className="flex items-center justify-end py-2 border-t border-solid border-blueGray-200 rounded-b">
+                        <button
+                          className="text-[#28a745] background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                          type="button"
+                          onClick={closeModal}>
+                          Close
+                        </button>
+                        <button
+                          className="text-white bg-[#28a745] active:ring-2 active:ring-[#28a745] active:bg-white active:text-[#28a745] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                          type="submit">
+                          Submit
+                        </button>
+                      </div>
                     </form>
-                  </div>
-                  <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                    <button
-                      className="text-[#28a745] background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                      onClick={() => setShowModal(false)}>
-                      Close
-                    </button>
-                    <button
-                      className="text-white bg-[#28a745] active:ring-2 active:ring-[#28a745] active:bg-white active:text-[#28a745] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                      type="submit"
-                      onClick={() => setShowModal(false)}>
-                      Submit
-                    </button>
                   </div>
                 </div>
               </div>
