@@ -1,9 +1,8 @@
-import { DataTypes, Sequelize } from 'sequelize';
-import database from '../config/database.config.js';
-
+import { DataTypes, Sequelize } from "sequelize";
+import database from "../config/database.config.js";
 
 const user = database.define(
-  'user',
+  "user",
   {
     email: {
       type: DataTypes.STRING,
@@ -11,7 +10,9 @@ const user = database.define(
       validate: {
         isEmail: true,
       },
+      unique: true,
     },
+
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -26,7 +27,7 @@ const user = database.define(
   {
     freezeTableName: true, // menghilangkan s (user(s))
     timestamps: false,
-  },
+  }
 );
 
 const syncUser = async () => {

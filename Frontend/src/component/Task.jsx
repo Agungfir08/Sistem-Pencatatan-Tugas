@@ -10,7 +10,7 @@ export default function Task() {
     </div>;
   };
   return (
-    <div class="flex justify-around flex-col w-80 h-52 p-6 bg-white border border-gray-200 rounded-lg shadow">
+    <div class="flex justify-around flex-col w-80 h-52 p-6 bg-white border border-gray-200 rounded-lg shadow me-3 mt-5">
       <div class="flex justify-between items-center ">
         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 truncate w-32">
           Title adfafasfjasfhj asdfasfjaks asdfafa asdfas
@@ -18,9 +18,10 @@ export default function Task() {
         <button
           id="dropdownDefaultButton"
           data-dropdown-toggle="dropdown"
+          data-dropdown-offset-skidding="-25"
+          data-dropdown-offset-distance="5"
           class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 rounded-lg p-1.5"
           type="button">
-          <span class="sr-only">Open dropdown</span>
           <svg
             className="w-5 h-5 text-gray-900 "
             aria-hidden="true"
@@ -32,7 +33,7 @@ export default function Task() {
         </button>
         <div
           id="dropdown"
-          class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-auto ">
+          class="z-10 hidden bg-white divide-y divide-gray-100 border border-gray-200 rounded-lg shadow w-auto ">
           <ul
             class="py-2 text-sm text-gray-700 "
             aria-labelledby="dropdownDefaultButton">
