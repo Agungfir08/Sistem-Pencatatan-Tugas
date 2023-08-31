@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
 export default function Login() {
   const [data, setData] = useState({
     email: undefined,
@@ -35,7 +36,7 @@ export default function Login() {
       )
       .then((res) => {
         if (res.data.message === "Login Berhasil") {
-          console.log(res.data);
+          alert(res.data.token);
         }
       })
       .catch((err) => {

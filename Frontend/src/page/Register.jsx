@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 export default function Register() {
   const [data, setData] = useState({
     name: undefined,
