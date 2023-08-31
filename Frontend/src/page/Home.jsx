@@ -3,7 +3,7 @@ import { useState } from "react";
 import Task from "../component/Task";
 import axios from "axios";
 import "flowbite";
-axios.defaults.withCredentials=true
+axios.defaults.withCredentials = true;
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -30,7 +30,7 @@ export default function Home() {
   }
   useEffect(() => {
     console.log(addTask);
-  }, [addTask, 1000]);
+  }, [addTask]);
 
   function openModal() {
     setShowModal(true);
@@ -78,10 +78,24 @@ export default function Home() {
       )
       .then((res) => {
         console.log(res.data);
+        setShowModal(false);
+        window.location.reload(true);
       })
       .catch((err) => {
         alert(err.message);
       });
+  }
+
+  function filterByDate() {
+    setTasks((prevTask) => {
+      return [...prevTask].sort((a, b) => b.deadline.localeCompare(a.deadline));
+    });
+  }
+
+  function filterByStatus() {
+    setTasks((prevTask) => {
+      return [...prevTask].sort((a, b) => a.is_done - b.is_done);
+    });
   }
 
   useEffect(() => {
@@ -90,7 +104,7 @@ export default function Home() {
 
   return (
     <>
-      <div className=" mt-2.5 mr-6 ml-72 flex justify-between">
+      <div className=" mt-2.5 mb-5 mr-6 ml-72 flex justify-between">
         <h1 className="font-bold text-2xl">Sistem Pengingat Tugas</h1>
         <div className="flex flex-row gap-2">
           <button
@@ -132,12 +146,6 @@ export default function Home() {
                 d="M18.85 1.1A1.99 1.99 0 0 0 17.063 0H2.937a2 2 0 0 0-1.566 3.242L6.99 9.868 7 14a1 1 0 0 0 .4.8l4 3A1 1 0 0 0 13 17l.01-7.134 5.66-6.676a1.99 1.99 0 0 0 .18-2.09Z"
               />
             </svg>
-            {/* <Option>Material Tailwind HTML</Option>
-                        <Option>Material Tailwind React</Option>
-                        <Option>Material Tailwind Vue</Option>
-                        <Option>Material Tailwind Angular</Option>
-                        <Option>Material Tailwind Svelte</Option>
-                      </Select> */}
           </button>
           <div
             id="dropdownFilter"
@@ -147,14 +155,14 @@ export default function Home() {
               aria-labelledby="dropdownDefaultButton">
               <li>
                 <a
-                  href="#"
+                  onClick={filterByStatus}
                   class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 ">
                   <span class="font-semibold ">by Status</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  onClick={filterByDate}
                   class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 ">
                   <span class="font-semibold">by Date</span>
                 </a>
@@ -268,8 +276,8 @@ export default function Home() {
         ) : null}
       </div>
       <div className="flex flex-wrap ml-72">
-        {tasks.map((tugas) => (
-          <Task key={tugas.id} task={tugas} />
+        {tasks.map((task) => (
+          <Task key={task.id} task={task} />
         ))}
       </div>
     </>
