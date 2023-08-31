@@ -65,7 +65,10 @@ const login = async (req, res) => {
       expires: new Date(Date.now() + 3600000),
     });
 
-    res.status(200).json({ id: userExist[0].id });
+    res.status(200).json({
+      id: userExist[0].id,
+      token: token,
+    });
   } catch (error) {
     res.status(400).json({
       message: "Email Not Found",

@@ -8,7 +8,6 @@ const verifyToken = (req, res, next) => {
   jwt.verify(token, process.env.ACCESS_TOKEN, (err, decoded) => {
     console.log(err);
     if (err) return res.status(403).json({ message: err });
-    // res.json(decoded);
     console.log("Verifikasi Token Berhasil");
     next();
   });
