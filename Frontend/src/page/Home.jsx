@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Task from "../component/Task";
+import axios from "axios";
 import "flowbite";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
+  const [tasks, setTasks] = useState([]);
+
+  function getTask() {
+    axios
+      .get(`https://tasks-three-mauve.vercel.app/task/3`)
+      .then((res) => {
+        setTasks(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
+  useEffect(() => {
+    getTask();
+  }, []);
 
   return (
     <>
@@ -95,7 +113,7 @@ export default function Home() {
                     </button>
                   </div>
                   <div className="relative p-6 flex-auto">
-                    <form className="w-full max-w-lg">
+                    <form className="w-full max-w-lg" onSubmit={tesEndpoint}>
                       <div className="flex flex-wrap -mx-3 mb-2">
                         <div className="w-full px-3 mb-6 md:mb-0">
                           <label
@@ -167,7 +185,7 @@ export default function Home() {
                     </button>
                     <button
                       className="text-white bg-[#28a745] active:ring-2 active:ring-[#28a745] active:bg-white active:text-[#28a745] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
+                      type="submit"
                       onClick={() => setShowModal(false)}>
                       Submit
                     </button>
@@ -179,8 +197,9 @@ export default function Home() {
         ) : null}
       </div>
       <div className="flex flex-wrap">
-        <Task />
-        <Task />
+        {tasks.map((tugas) => (
+          <Task key={tugas.id} task={tugas} />
+        ))}
       </div>
     </>
   );
