@@ -44,7 +44,7 @@ const login = async (req, res) => {
       },
     });
 
-    const id = userExist[0].d;
+    const id = userExist[0].id;
     const name = userExist[0].name;
     const email = userExist[0].email;
 
@@ -58,7 +58,7 @@ const login = async (req, res) => {
       });
 
     const token = jwt.sign({ id, name, email }, process.env.ACCESS_TOKEN, {
-      expiresIn: "200s",
+      expiresIn: "1w",
     });
     res.cookie("token", token, {
       httpOnly: true,
