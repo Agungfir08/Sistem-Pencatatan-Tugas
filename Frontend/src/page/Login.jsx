@@ -1,6 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Login() {
+  const [data, setData] = useState({
+    email: undefined,
+    password: undefined,
+  });
+
+  function handleChange(e) {
+    setData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  }
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  function submit(e) {
+    e.preventDefault();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios
+      .post(
+        "http://localhost:4000/login",
+        {
+          email: data.email,
+          password: data.password,
+        },
+        config
+      )
+      .then((res) => {
+        if (res.data.message === "Login Berhasil") {
+          console.log(res.data);
+        }
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  }
+
+  //localhost:4000/register
   return (
     <section class="bg-gray-50">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -9,7 +52,7 @@ export default function Login() {
             <div class="flex justify-center">
               <h1 class="text-4xl font-bold text-black-900">Login</h1>
             </div>
-            <form class="space-y-4 md:space-y-6" action="#">
+            <form class="space-y-4 md:space-y-6" onSubmit={submit}>
               <div>
                 <label
                   for="email"
@@ -22,7 +65,7 @@ export default function Login() {
                   id="email"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
                   placeholder="Enter your email"
-                  required=""
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -37,7 +80,7 @@ export default function Login() {
                   id="password"
                   placeholder="Enter your password"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
-                  required=""
+                  onChange={handleChange}
                 />
               </div>
               <div class="flex justify-end">

@@ -24,6 +24,10 @@ export const Task = database.define(
       type: DataTypes.DATE,
       allowNull: false
     }, 
+    is_done:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   },
   {
     freezeTableName: true,

@@ -45,7 +45,6 @@ const login = async (req, res) => {
     });
 
     const { id, name, email } = userExist[0];
-
     const match = await bcyrpt.compare(
       req.body.password,
       userExist[0].password
@@ -57,7 +56,7 @@ const login = async (req, res) => {
       });
 
     const token = jwt.sign({ id, name, email }, process.env.ACCESS_TOKEN, {
-      expiresIn: "200s",
+      expiresIn: "1w",
     });
     res.cookie("token", token, {
       httpOnly: true,
@@ -74,7 +73,7 @@ const login = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       status: 400,
-      message: "Email Not Found",
+      message: error.message,
     });
   }
 };
