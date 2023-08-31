@@ -16,4 +16,3 @@ app.use(userRouter);
 app.listen(4000, () => {
   console.log("connected to server");
 });
-
