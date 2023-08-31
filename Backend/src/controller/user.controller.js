@@ -84,7 +84,10 @@ const logout = (req, res) => {
   if (!token) res.sendStatus(403);
 
   res.clearCookie("token");
-  return res.sendStatus(200);
+  return res.status(200).json({
+    status: 200,
+    message: "Log Out Berhasil",
+  });
 };
 
 const testMiddleware = (req, res) => {
