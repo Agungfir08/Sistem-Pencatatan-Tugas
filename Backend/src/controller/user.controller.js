@@ -44,7 +44,9 @@ const login = async (req, res) => {
       },
     });
 
+
     const { id, name, email } = userExist[0];
+
 
     const match = await bcyrpt.compare(
       req.body.password,
@@ -57,7 +59,7 @@ const login = async (req, res) => {
       });
 
     const token = jwt.sign({ id, name, email }, process.env.ACCESS_TOKEN, {
-      expiresIn: "200s",
+      expiresIn: "1w",
     });
     res.cookie("token", token, {
       httpOnly: true,

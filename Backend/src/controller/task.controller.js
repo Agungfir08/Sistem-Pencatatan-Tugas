@@ -5,13 +5,13 @@ import { Op } from 'sequelize';
 
 export const getAllTask = async (req, res) => {
 	try {
-		if (!req.body.user_id) {
+		if (!req.id) {
 			return res.status(401).json({ message: 'user id not included!' });
 		}
 
 		await Task.findAll({
 			where: {
-				user_id: req.body.user_id,
+				user_id: req.id
 			},
 			attributes: [
 				'id',
@@ -45,7 +45,7 @@ export const createTask = async (req, res) => {
 	const { user_id, judul, deskripsi, deadline } = req.body;
 	try {
 		await Task.create({
-			user_id: req.body.user_id,
+			user_id: req.id,
 			judul: req.body.judul,
 			deskripsi: req.body.deskripsi,
 			deadline: req.body.deadline, //yyyy-mm-dd
@@ -60,7 +60,7 @@ export const createTask = async (req, res) => {
 };
 
 export const updateTask = async (req, res) => {
-	if (!req.body.user_id) {
+	if (!req.id) {
 		return res.status(400).json({
 			message: 'user_id has to be included',
 		});
@@ -68,7 +68,7 @@ export const updateTask = async (req, res) => {
 	try {
 		await Task.update(
 			{
-				user_id: req.body.user_id,
+				user_id: req.id,
 				judul: req.body.judul,
 				deskripsi: req.body.deskripsi,
 				deadline: req.body.deadline, //yyyy-mm-dd
@@ -91,7 +91,7 @@ export const deleteTask = async (req, res) => {
 		await Task.destroy({
 			trucante: true,
 			where: {
-				id: req.params.id,
+				id: req.id,
 			},
 		});
 		return res.status(200).json({ message: 'Task deleted successfully' });
@@ -104,7 +104,7 @@ export const getTaskNotification = async (req, res) => {
 	try {
 		const dataTask = await Task.findAll({
 			where: {
-				user_id: req.body.user_id,
+				user_id: req.id,
 				is_done: false,
 			},
 			attributes: ['id', 'judul', 'deskripsi', 'deadline'],
@@ -138,7 +138,7 @@ export const filterTask = async (req, res) => {
 		if (!judul && !status) {
 			taskFilter = await Task.findAll({
 				where: {
-					user_id: req.body.user_id,
+					user_id: req.id,
 				},
 				attributes: [
 					'id',
