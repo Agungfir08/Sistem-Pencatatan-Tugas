@@ -1,20 +1,12 @@
-<<<<<<< HEAD
-import React, { useContext } from "react";
-import { GlobalContext } from "../context/globalContext";
-
-export default function Login() {
-  const { state, handleFunction } = useContext(GlobalContext)
-    const {input} = state
-    const {
-        handleChange,
-        handleLogin,
-    } = handleFunction
-
-=======
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie"
+import { useNavigate } from "react-router-dom";
+axios.defaults.withCredentials=true
+import { Link } from "react-router-dom";
 
 export default function Login() {
+  let navigate = useNavigate();
   const [data, setData] = useState({
     email: undefined,
     password: undefined,
@@ -39,25 +31,25 @@ export default function Login() {
 
     axios
       .post(
-        "http://localhost:4000/login",
+        "http://localhost:4999/login",
         {
           email: data.email,
           password: data.password,
         },
         config
       )
-      .then((res) => {
-        if (res.data.message === "Login Berhasil") {
-          console.log(res.data);
-        }
-      })
+      .then(
+        // if (res.data.message === "Login Berhasil") {
+        //   console.log(res.data);
+        // }
+            navigate('/')
+      )
       .catch((err) => {
         alert(err.message);
       });
   }
 
   //localhost:4000/register
->>>>>>> 2802e99c71e64a5315ec182dffed22b29d548270
   return (
     <section class="bg-gray-50">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -66,11 +58,7 @@ export default function Login() {
             <div class="flex justify-center">
               <h1 class="text-4xl font-bold text-black-900">Login</h1>
             </div>
-<<<<<<< HEAD
-            <form onSubmit={handleLogin} class="space-y-4 md:space-y-6" action="#">
-=======
             <form class="space-y-4 md:space-y-6" onSubmit={submit}>
->>>>>>> 2802e99c71e64a5315ec182dffed22b29d548270
               <div>
                 <label
                   for="email"
@@ -83,13 +71,7 @@ export default function Login() {
                   id="email"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
                   placeholder="Enter your email"
-<<<<<<< HEAD
-                  required=""
                   onChange={handleChange}
-                  value={input.email}
-=======
-                  onChange={handleChange}
->>>>>>> 2802e99c71e64a5315ec182dffed22b29d548270
                 />
               </div>
               <div>
@@ -104,13 +86,7 @@ export default function Login() {
                   id="password"
                   placeholder="Enter your password"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
-<<<<<<< HEAD
-                  required=""
                   onChange={handleChange}
-                  value={input.password}
-=======
-                  onChange={handleChange}
->>>>>>> 2802e99c71e64a5315ec182dffed22b29d548270
                 />
               </div>
               <div class="flex justify-end">
@@ -128,11 +104,11 @@ export default function Login() {
               <div class="flex justify-center">
                 <p class="text-sm font-light text-gray-500">
                   Dont have an account?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    to="/register"
                     class="font-medium text-green-400 hover:underline">
                     Register
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>

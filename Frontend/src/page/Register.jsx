@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [data, setData] = useState({
@@ -142,11 +143,11 @@ export default function Register() {
               <div class="flex justify-center">
                 <p class="text-sm font-light text-gray-500">
                   Already have an account?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    to="/login"
                     class="font-medium text-green-400 hover:underline">
                     Login
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>

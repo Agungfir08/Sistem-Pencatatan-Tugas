@@ -8,50 +8,79 @@ import {
   createRoutesFromElements,
   RouterProvider,
   Route,
+  Navigate,
+  BrowserRouter,
+  Routes
 } from "react-router-dom";
 import NotFound from "./page/NotFound";
 import Tes from "./context/tes";
 import Profile from "./page/Profile";
 import Cookies from "js-cookie"
+import LayOut from "./layout/layout"
 
 export default function App() {
+  
   const LoginRegisRoute = (props) => {
-    if (Cookies.get('token') !== undefined) {
-        return <Navigate to={'/'} />
-    } else if (Cookies.get('token') === undefined) {
+    if (Cookies.get('token') !== undefined) {   
         return props.children
+    } else if (Cookies.get('token') === undefined) {
+        return <Navigate to={'/login'} />
     }
 }
 
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<Sidebar />}>
+  // const router = createBrowserRouter(
+  //   createRoutesFromElements(
+  //     // <Route path="/" element={<Sidebar />}>
+  //     <>
 
-      <Route path='/login' element={
-        <LoginRegisRoute>
-          <Login />
-        </LoginRegisRoute>
-      }/>
-
-      <Route path='/register' element={
-        <LoginRegisRoute>
-          <Register />
-        </LoginRegisRoute>
-      }/>
-
-        <Route index element={<Tes />} />
-        <Route path="/notification" element={<Notification />} />
-        <Route path="/notfound" element={<NotFound />} />
-        <Route path="/profile" element={<Profile />} />
+  //     </>
         
-      </Route>
-    )
-  );
+  //     // </Route>
+  //   )
+  // );
   return (
-    // <>
-    //   <RouterProvider router={router} />
-    // </>
+    
+    <BrowserRouter>
+
+      {/* <RouterProvider router={router} /> */}
+        <Routes>
+          <Route path='*' element={<NotFound/>}/>
+
+          <Route path="/login" element={
+              <Login />
+          } />
+          
+          <Route path="/register" element={
+              <Register />
+          } />
+          
+          <Route path="/" element={
+<LayOut>
+              <Home /> 
+            </LayOut>
+
+            
+          } />
+
+          <Route path="/notification" element={
+            <LayOut>
+              <Notification />
+            </LayOut>
+          } />
+          
+          {/* <Route path="/notification" element={
+            <LayOut>
+              <Notification />
+            </LayOut>
+          } /> */}
+          
+
+        </Routes>
+
+
+
+    </BrowserRouter>
     // <Login />
-    <Login />
+    // <Login />
   );
 }

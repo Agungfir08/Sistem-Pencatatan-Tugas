@@ -3,6 +3,7 @@ import { useState } from "react";
 import Task from "../component/Task";
 import axios from "axios";
 import "flowbite";
+axios.defaults.withCredentials=true
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -10,7 +11,7 @@ export default function Home() {
 
   function getTask() {
     axios
-      .get(`https://tasks-three-mauve.vercel.app/task/3`)
+      .get(`http://localhost:4999/task`)
       .then((res) => {
         setTasks(res.data.data);
         console.log(res.data.data);
@@ -26,7 +27,7 @@ export default function Home() {
 
   return (
     <>
-      <div className=" mt-2.5 mr-6 flex justify-between">
+      <div className=" mt-2.5 mr-6 ml-72 flex justify-between">
         <h1 className="font-bold text-2xl">Sistem Pengingat Tugas</h1>
         <div className="flex flex-row gap-2">
           <button
@@ -196,7 +197,7 @@ export default function Home() {
           </>
         ) : null}
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap ml-72">
         {tasks.map((tugas) => (
           <Task key={tugas.id} task={tugas} />
         ))}

@@ -1,8 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import Cookies from "js-cookie"
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Sidebar() {
+  let navigate = useNavigate();
+  function deleteToken() {
+    axios
+      .delete(`http://localhost:4999/logout`)
+      .then(
+        navigate("/login")
+      )
+      .catch((err) => {
+        alert(err);
+      });
+  }
   return (
     <>
       <div class="fixed top-0 left-0 w-64 h-screen  shadow-lg">
@@ -101,6 +115,10 @@ export default function Sidebar() {
             </li>
             <li>
               <button
+                onClick={
+                  deleteToken
+                } 
+                
                 type="button"
                 class="text-white hover:text-[#28a745] w-full flex justify-center bg-[#28a745] gap-x-2 hover:bg-white hover:ring-2 hover:ring-[#28a745]/75 focus:ring-2 focus:outline-none focus:ring-[#28a745] font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 group">
                 <svg

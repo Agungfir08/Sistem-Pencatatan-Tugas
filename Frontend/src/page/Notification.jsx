@@ -3,7 +3,7 @@ import React from "react";
 export default function Notification() {
   return (
     <>
-      <div className="mt-2.5 mr-6">
+      <div className="mt-2.5 mr-6 ml-72">
         <h1 className="font-bold text-2xl">Notifications</h1>
         <div className="relative overflow-x-auto mt-6">
           <table className="w-full text-sm text-left text-gray-500">
