@@ -33,7 +33,7 @@ export default function Register() {
 
     axios
       .post(
-        "http://localhost:4000/register",
+        "http://localhost:4999/register",
         {
           name: data.name,
           email: data.email,

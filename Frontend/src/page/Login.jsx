@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-axios.defaults.withCredentials = true;
 export default function Login() {
   let navigate = useNavigate();
   const [data, setData] = useState({
@@ -31,7 +30,7 @@ export default function Login() {
 
     axios
       .post(
-        "http://localhost:4000/login",
+        "http://localhost:4999/login",
         {
           email: data.email,
           password: data.password,
@@ -39,17 +38,18 @@ export default function Login() {
         config
       )
       .then((res) => {
-        if (res.data.message === "Login Berhasil") {
-          alert(res.data.token);
-          navigate("/");
-        }
+        // let {token} = res.data
+        //     console.log(token)
+            // Cookies.set('token', res.data.token)
+            localStorage.setItem('token', res.data.token)
+            navigate('/')
+        // navigate("/home")
       })
       .catch((err) => {
         alert(err);
       });
   }
 
-  //localhost:4000/register
   return (
     <section class="bg-gray-50">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
