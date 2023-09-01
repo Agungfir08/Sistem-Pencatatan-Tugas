@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
 export default function Register() {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: undefined,
     email: undefined,
@@ -44,10 +45,11 @@ export default function Register() {
       .then((res) => {
         if (res.data.message === "User Create Success") {
           alert("Register berhasil");
+          navigate("/");
         }
       })
       .catch((err) => {
-        alert(err.message);
+        alert(err);
       });
   }
 
@@ -139,7 +141,7 @@ export default function Register() {
               </div>
               <button
                 type="submit"
-                class="w-full text-white bg-green-400 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                class="w-full text-white bg-green-400 hover:bg-green-600  font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                 Register
               </button>
               <div class="flex justify-center">
