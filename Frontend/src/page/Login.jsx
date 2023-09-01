@@ -41,7 +41,6 @@ export default function Login() {
         // let {token} = res.data
         //     console.log(token)
         // Cookies.set('token', res.data.token)
-        document.cookie = `token=${res.data.token}`;
         localStorage.setItem("token", res.data.token);
         navigate("/");
         // navigate("/home")

@@ -10,7 +10,7 @@ export default function Sidebar() {
   function deleteToken() {
     axios
       .delete(`https://task-be-ashy.vercel.app/logout`)
-      .then((res) => {
+      .then(() => {
         localStorage.removeItem("token");
         navigate("/login");
       })
