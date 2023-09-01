@@ -13,7 +13,7 @@ export default function Task({ task }) {
       .delete(`https://task-be-ashy.vercel.app/task/${task.id}/delete`)
       .then((res) => {
         console.log(res.data.id);
-        window.location.reload(true);
+        window.location.reload(false);
       });
   }
 
