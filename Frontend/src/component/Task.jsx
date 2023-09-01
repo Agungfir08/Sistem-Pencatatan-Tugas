@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-
 export default function Task({ task }) {
   const config = {
     headers: {
