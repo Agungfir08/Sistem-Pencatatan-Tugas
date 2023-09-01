@@ -1,14 +1,7 @@
 import React from "react";
 
 export default function Task() {
-  const Dropdown = () => {
-    <div class="flex flex-col">
-      <ul>
-        <li>Done</li>
-        <li>Delete</li>
-      </ul>
-    </div>;
-  };
+  
   return (
     <div class="flex justify-around flex-col w-80 h-52 p-6 bg-white border border-gray-200 rounded-lg shadow me-3 mt-5">
       <div class="flex justify-between items-center ">
