@@ -23,7 +23,10 @@ export default function Task({ task }) {
         },
         config
       )
-      .then(window.location.reload(true));
+      .then((res) => {
+        console.log(res.data.id);
+        window.location.reload(true);
+      });
   }
   return (
     <div className="flex justify-around flex-col w-80 h-52 p-6 bg-white border border-gray-200 rounded-lg shadow me-5 mb-5">
