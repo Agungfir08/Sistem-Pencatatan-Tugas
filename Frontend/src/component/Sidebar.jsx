@@ -10,9 +10,10 @@ export default function Sidebar() {
   function deleteToken() {
     axios
       .delete(`http://localhost:4999/logout`)
-      .then(
+      .then((res)=>{
+        localStorage.removeItem('token')
         navigate("/login")
-      )
+      })
       .catch((err) => {
         alert(err);
       });
