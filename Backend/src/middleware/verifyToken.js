@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 
 const verifyToken = (req, res, next) => {
   const token = req.cookies.token;
+  // const token = window.localStorage.getItem('token')
 
   if (!token) res.status(401).json({ message: "Token is Empty" });
 
