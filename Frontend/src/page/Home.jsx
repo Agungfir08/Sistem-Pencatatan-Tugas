@@ -28,9 +28,6 @@ export default function Home() {
       setAddTask((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     }
   }
-  useEffect(() => {
-    console.log(addTask);
-  }, [addTask]);
 
   function openModal() {
     setShowModal(true);
