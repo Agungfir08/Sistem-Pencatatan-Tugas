@@ -33,7 +33,7 @@ export default function Task({ task }) {
           {task.judul}
         </h5>
         <div>
-          <Button
+          <button
             className="inline-flex items-center p-1 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100"
             type="button"
             onClick={doneTask}>
@@ -51,8 +51,8 @@ export default function Task({ task }) {
                 d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-          </Button>
-          <Button
+          </button>
+          <button
             className="inline-flex items-center p-1 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100"
             type="button"
             onClick={deleteTask}>
@@ -69,7 +69,7 @@ export default function Task({ task }) {
                 d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"
               />
             </svg>
-          </Button>
+          </button>
         </div>
       </div>
 
