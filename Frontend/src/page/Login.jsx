@@ -1,6 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie"
+import { useNavigate } from "react-router-dom";
+axios.defaults.withCredentials=true
+import { Link } from "react-router-dom";
 
+axios.defaults.withCredentials = true;
 export default function Login() {
+  let navigate = useNavigate();
+  const [data, setData] = useState({
+    email: undefined,
+    password: undefined,
+  });
+
+  function handleChange(e) {
+    setData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  }
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  function submit(e) {
+    e.preventDefault();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios
+      .post(
+        "http://localhost:4999/login",
+        {
+          email: data.email,
+          password: data.password,
+        },
+        config
+      )
+      .then((res) => {
+        if (res.data.message === "Login Berhasil") {
+          alert(res.data.token);
+        }
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  }
+
+  //localhost:4000/register
   return (
     <section class="bg-gray-50">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -9,7 +58,7 @@ export default function Login() {
             <div class="flex justify-center">
               <h1 class="text-4xl font-bold text-black-900">Login</h1>
             </div>
-            <form class="space-y-4 md:space-y-6" action="#">
+            <form class="space-y-4 md:space-y-6" onSubmit={submit}>
               <div>
                 <label
                   for="email"
@@ -22,7 +71,7 @@ export default function Login() {
                   id="email"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
                   placeholder="Enter your email"
-                  required=""
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -37,7 +86,7 @@ export default function Login() {
                   id="password"
                   placeholder="Enter your password"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
-                  required=""
+                  onChange={handleChange}
                 />
               </div>
               <div class="flex justify-end">
@@ -48,18 +97,18 @@ export default function Login() {
                 </a>
               </div>
               <button
-                type="submit"
+                type={"submit"}
                 class="w-full text-white bg-green-400 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                 Login
               </button>
               <div class="flex justify-center">
                 <p class="text-sm font-light text-gray-500">
                   Dont have an account?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    to="/register"
                     class="font-medium text-green-400 hover:underline">
                     Register
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>

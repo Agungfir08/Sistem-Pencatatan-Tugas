@@ -44,10 +44,7 @@ const login = async (req, res) => {
       },
     });
 
-
     const { id, name, email } = userExist[0];
-
-
     const match = await bcyrpt.compare(
       req.body.password,
       userExist[0].password
@@ -87,7 +84,10 @@ const logout = (req, res) => {
   if (!token) res.sendStatus(403);
 
   res.clearCookie("token");
-  return res.sendStatus(200);
+  return res.status(200).json({
+    status: 200,
+    message: "Log Out Berhasil",
+  });
 };
 
 const testMiddleware = (req, res) => {
