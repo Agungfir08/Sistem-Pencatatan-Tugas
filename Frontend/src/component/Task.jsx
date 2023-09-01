@@ -11,7 +11,10 @@ export default function Task({ task }) {
   function deleteTask() {
     axios
       .delete(`https://task-be-ashy.vercel.app/task/${task.id}/delete`)
-      .then(window.location.reload(true));
+      .then((res) => {
+        console.log(res.data.id);
+        window.location.reload(true);
+      });
   }
 
   function doneTask() {
