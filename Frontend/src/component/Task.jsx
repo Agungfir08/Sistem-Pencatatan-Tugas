@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 export default function Task({ task }) {
   const config = {
     headers: {
@@ -18,7 +19,7 @@ export default function Task({ task }) {
 
   function doneTask() {
     axios
-      .post(
+      .put(
         `http://localhost:4000/task/${task.id}`,
         {
           is_done: true,
@@ -27,7 +28,7 @@ export default function Task({ task }) {
       )
       .then(window.location.reload(true))
       .catch((err) => {
-        alert(err.message);
+        alert(err);
       });
   }
   return (
