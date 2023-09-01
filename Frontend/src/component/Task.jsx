@@ -11,10 +11,7 @@ export default function Task({ task }) {
   function deleteTask() {
     axios
       .delete(`https://task-be-ashy.vercel.app/task/${task.id}/delete`)
-      .then(window.location.reload(true))
-      .catch((err) => {
-        alert(err.message);
-      });
+      .then(window.location.reload(true));
   }
 
   function doneTask() {
@@ -26,10 +23,7 @@ export default function Task({ task }) {
         },
         config
       )
-      .then(window.location.reload(true))
-      .catch((err) => {
-        alert(err);
-      });
+      .then(window.location.reload(true));
   }
   return (
     <div className="flex justify-around flex-col w-80 h-52 p-6 bg-white border border-gray-200 rounded-lg shadow me-5 mb-5">
