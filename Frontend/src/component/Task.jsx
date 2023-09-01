@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-
 export default function Task({ task }) {
   function deleteTask() {
     axios
@@ -10,6 +9,7 @@ export default function Task({ task }) {
         alert(err.message);
       });
   }
+
   return (
     <div className="flex justify-around flex-col w-80 h-52 p-6 bg-white border border-gray-200 rounded-lg shadow me-5 mb-5">
       <div className="flex justify-between items-center">
