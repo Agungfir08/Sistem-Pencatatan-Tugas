@@ -11,64 +11,73 @@ import {
   Route,
   Navigate,
   BrowserRouter,
-  Routes
+  Routes,
 } from "react-router-dom";
 import NotFound from "./page/NotFound";
 import Tes from "./context/tes";
 import Profile from "./page/Profile";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 // import Cookies from 'universal-cookie';
-import LayOut from "./layout/layout"
-
+import LayOut from "./layout/layout";
 
 export default function App() {
-  
   const LoginRegisRoute = (props) => {
     // if (Cookies.get('token') === undefined) {
     //     return <Navigate to={'/login'} />
     // } else if (Cookies.get('token') !== undefined) {
-    //     return props.children    
+    //     return props.children
     // }
-    if (localStorage.getItem('token') === null) {
-        return <Navigate to={'/login'} />
-    } else if (localStorage.getItem('token') !== null) {
-        return props.children    
+    if (localStorage.getItem("token") === null) {
+      return <Navigate to={"/login"} />;
+    } else if (localStorage.getItem("token") !== null) {
+      return props.children;
     }
-  }
-  
+  };
+
   return (
     <>
       <BrowserRouter>
         <Routes>
-            <Route path='*' element={<NotFound/>}/>
+          <Route path="*" element={<NotFound />} />
 
-            <Route path="/login" element={
-                <Login />
-            } />
-    
-            <Route path="/register" element={
-                <Register />
-            } />
-    
-            <Route path="/" element={
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/register" element={<Register />} />
+
+          <Route
+            path="/"
+            element={
               <LoginRegisRoute>
                 <LayOut>
-                  <Home /> 
+                  <Home />
                 </LayOut>
               </LoginRegisRoute>
-            } />
+            }
+          />
 
-            <Route path="/notification" element={
+          <Route
+            path="/notification"
+            element={
               <LoginRegisRoute>
                 <LayOut>
                   <Notification />
                 </LayOut>
-              </LoginRegisRoute>  
-            } />
+              </LoginRegisRoute>
+            }
+          />
+
+          {/* <Route
+            path="/profile"
+            element={
+              <LoginRegisRoute>
+                <LayOut>
+                  <Profile />
+                </LayOut>
+              </LoginRegisRoute>
+            }
+          /> */}
         </Routes>
       </BrowserRouter>
     </>
-    
-    
   );
 }

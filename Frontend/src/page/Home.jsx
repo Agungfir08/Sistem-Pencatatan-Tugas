@@ -46,15 +46,10 @@ export default function Home() {
   }
 
   function getTask() {
-    axios
-      .get(`http://localhost:4000/task`)
-      .then((res) => {
-        setTasks(res.data.data);
-        console.log(res.data.data);
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+    axios.get(`http://localhost:4000/task`).then((res) => {
+      setTasks(res.data.data);
+      console.log(res.data.data);
+    });
   }
 
   function createTask(e) {

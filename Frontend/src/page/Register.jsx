@@ -33,7 +33,7 @@ export default function Register() {
 
     axios
       .post(
-        "http://localhost:4999/register",
+        "http://localhost:4000/register",
         {
           name: data.name,
           email: data.email,
@@ -44,7 +44,7 @@ export default function Register() {
       )
       .then((res) => {
         if (res.data.message === "User Create Success") {
-          alert("Register berhasil");
+          localStorage.setItem("token", res.data.token);
           navigate("/");
         }
       })

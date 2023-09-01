@@ -30,7 +30,7 @@ export default function Login() {
 
     axios
       .post(
-        "http://localhost:4999/login",
+        "http://localhost:4000/login",
         {
           email: data.email,
           password: data.password,
@@ -40,9 +40,9 @@ export default function Login() {
       .then((res) => {
         // let {token} = res.data
         //     console.log(token)
-            // Cookies.set('token', res.data.token)
-            localStorage.setItem('token', res.data.token)
-            navigate('/')
+        // Cookies.set('token', res.data.token)
+        localStorage.setItem("token", res.data.token);
+        navigate("/");
         // navigate("/home")
       })
       .catch((err) => {
