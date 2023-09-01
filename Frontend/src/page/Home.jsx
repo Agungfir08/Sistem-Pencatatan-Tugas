@@ -45,7 +45,6 @@ export default function Home() {
   function getTask() {
     axios.get(`https://task-be-ashy.vercel.app/task`).then((res) => {
       setTasks(res.data.data);
-      console.log(res.data.data);
     });
   }
 
