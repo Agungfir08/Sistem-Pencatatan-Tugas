@@ -33,7 +33,7 @@ export default function Register() {
 
     axios
       .post(
-        "http://localhost:4000/register",
+        "https://task-be-ashy.vercel.app/register",
         {
           name: data.name,
           email: data.email,

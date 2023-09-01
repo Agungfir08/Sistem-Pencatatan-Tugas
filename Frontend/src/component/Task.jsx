@@ -10,7 +10,7 @@ export default function Task({ task }) {
 
   function deleteTask() {
     axios
-      .delete(`http://localhost:4000/task/${task.id}/delete`)
+      .delete(`https://task-be-ashy.vercel.app/task/${task.id}/delete`)
       .then(window.location.reload(true))
       .catch((err) => {
         alert(err.message);
@@ -20,7 +20,7 @@ export default function Task({ task }) {
   function doneTask() {
     axios
       .put(
-        `http://localhost:4000/task/${task.id}`,
+        `https://task-be-ashy.vercel.app/task/${task.id}`,
         {
           is_done: true,
         },

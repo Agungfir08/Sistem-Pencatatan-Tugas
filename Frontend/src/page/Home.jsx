@@ -46,7 +46,7 @@ export default function Home() {
   }
 
   function getTask() {
-    axios.get(`http://localhost:4000/task`).then((res) => {
+    axios.get(`https://task-be-ashy.vercel.app/task`).then((res) => {
       setTasks(res.data.data);
       console.log(res.data.data);
     });
@@ -63,7 +63,7 @@ export default function Home() {
 
     axios
       .post(
-        "http://localhost:4000/task",
+        "https://task-be-ashy.vercel.app/task",
         {
           judul: addTask.judul,
           deskripsi: addTask.deskripsi,
