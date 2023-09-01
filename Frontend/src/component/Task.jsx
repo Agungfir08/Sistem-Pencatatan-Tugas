@@ -1,10 +1,30 @@
 import React from "react";
 import axios from "axios";
-
 export default function Task({ task }) {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
   function deleteTask() {
     axios
       .delete(`http://localhost:4000/task/${task.id}/delete`)
+      .then(window.location.reload(true))
+      .catch((err) => {
+        alert(err.message);
+      });
+  }
+
+  function doneTask() {
+    axios
+      .post(
+        `http://localhost:4000/task/${task.id}`,
+        {
+          is_done: true,
+        },
+        config
+      )
       .then(window.location.reload(true))
       .catch((err) => {
         alert(err.message);
@@ -20,9 +40,7 @@ export default function Task({ task }) {
           <button
             className="inline-flex items-center p-1 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100"
             type="button"
-            onClick={() => {
-              console.log("click");
-            }}>
+            onClick={doneTask}>
             <svg
               className="w-5 h-5 text-gray-800 "
               aria-hidden="true"
