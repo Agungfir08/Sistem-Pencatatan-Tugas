@@ -9,18 +9,17 @@ import NotFound from "./page/NotFound";
 import Tes from "./context/tes";
 import Profile from "./page/Profile";
 import Cookies from "js-cookie";
+// import Cookies from 'universal-cookie';
 import LayOut from "./layout/layout";
-import { RequireAuth } from "react-auth-kit";
 
 export default function App() {
-  // const LoginRegisRoute = (props) => {
-
-  //   if (localStorage.getItem("token") === null) {
-  //     return <Navigate to={"/login"} />;
-  //   } else if (localStorage.getItem("token") !== null) {
-  //     return props.children;
-  //   }
-  // };
+  const LoginRegisRoute = (props) => {
+    if (localStorage.getItem("token") === null) {
+      return <Navigate to={"/login"} />;
+    } else if (localStorage.getItem("token") !== null) {
+      return props.children;
+    }
+  };
 
   return (
     <>
@@ -34,22 +33,22 @@ export default function App() {
         <Route
           path="/"
           element={
-            <RequireAuth>
+            <LoginRegisRoute>
               <LayOut>
                 <Home />
               </LayOut>
-            </RequireAuth>
+            </LoginRegisRoute>
           }
         />
 
         <Route
           path="/notification"
           element={
-            <RequireAuth>
+            <LoginRegisRoute>
               <LayOut>
                 <Notification />
               </LayOut>
-            </RequireAuth>
+            </LoginRegisRoute>
           }
         />
 

@@ -7,10 +7,10 @@ import { AuthProvider } from "react-auth-kit";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider authType="cookie" authName="token">
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </AuthProvider>
+    {/* <AuthProvider authType="cookie" authName="token"> */}
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    {/* </AuthProvider> */}
   </React.StrictMode>
 );

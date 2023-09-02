@@ -7,15 +7,13 @@ import { useSignOut } from "react-auth-kit";
 import axios from "axios";
 
 export default function Sidebar() {
-  const singOut = useSignOut();
   let navigate = useNavigate();
   function deleteToken() {
     axios
       .delete(`https://task-be-ashy.vercel.app/logout`)
-      .then((res) => {
-        if (res.status === 200) {
-          singOut();
-        }
+      .then(() => {
+        localStorage.removeItem("token");
+        navigate("/login");
       })
       .catch((err) => {
         alert(err);

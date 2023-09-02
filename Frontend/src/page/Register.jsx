@@ -45,6 +45,7 @@ export default function Register() {
       .then((res) => {
         if (res.status === 200) {
           console.log("register berhasil");
+          console.log(res.data);
           navigate("/login");
         }
       })

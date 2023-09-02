@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useSignIn } from "react-auth-kit";
 
 export default function Login() {
-  const signIn = useSignIn();
   let navigate = useNavigate();
   const [data, setData] = useState({
     email: undefined,
@@ -39,11 +38,8 @@ export default function Login() {
         config
       )
       .then((res) => {
-        if (res.status === 200) {
-          signIn({
-            token: res.data.token,
-          });
-        }
+        localStorage.setItem("token", res.data.token);
+        navigate("/");
       })
       .catch((err) => {
         alert(err);
