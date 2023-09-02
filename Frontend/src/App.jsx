@@ -27,37 +27,37 @@ export default function App() {
   return (
     <>
       <Router>
-        <AuthProvider>
-          <Routes>
-            <Route path="*" element={<NotFound />} />
+        {/* <AuthProvider> */}
+        <Routes>
+          <Route path="*" element={<NotFound />} />
 
-            <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
 
-            <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />} />
 
-            <Route
-              path="/"
-              element={
-                <LoginRegisRoute>
-                  <LayOut>
-                    <Home />
-                  </LayOut>
-                </LoginRegisRoute>
-              }
-            />
+          <Route
+            path="/"
+            element={
+              <LoginRegisRoute>
+                <LayOut>
+                  <Home />
+                </LayOut>
+              </LoginRegisRoute>
+            }
+          />
 
-            <Route
-              path="/notification"
-              element={
-                <LoginRegisRoute>
-                  <LayOut>
-                    <Notification />
-                  </LayOut>
-                </LoginRegisRoute>
-              }
-            />
-          </Routes>
-        </AuthProvider>
+          <Route
+            path="/notification"
+            element={
+              <LoginRegisRoute>
+                <LayOut>
+                  <Notification />
+                </LayOut>
+              </LoginRegisRoute>
+            }
+          />
+        </Routes>
+        {/* </AuthProvider> */}
       </Router>
     </>
   );

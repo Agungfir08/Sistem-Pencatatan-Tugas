@@ -1,18 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useSignOut } from "react-auth-kit";
 import axios from "axios";
 
 export default function Sidebar() {
-  const { logout } = useAuth();
   let navigate = useNavigate();
   function deleteToken() {
     axios
       .delete(`https://task-be-ashy.vercel.app/logout`)
       .then(() => {
-        logout();
+        localStorage.removeItem("token");
+        navigate("/login");
       })
       .catch((err) => {
         alert(err);
