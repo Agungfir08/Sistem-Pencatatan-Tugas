@@ -21,14 +21,6 @@ export default function App() {
     }
   };
 
-  const protectedRoute = (props) => {
-    return (
-      <LoginRegisRoute>
-        <LayOut>{props.children}</LayOut>
-      </LoginRegisRoute>
-    );
-  };
-
   return (
     <>
       <Routes>
@@ -42,10 +34,28 @@ export default function App() {
         <Route path="/register" element={<Register />} />
 
         {/* Private route */}
-        <Route path="/" element={<protectedRoute />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/notification" element={<Notification />} />
-        </Route>
+        <Route
+          path="/"
+          element={
+            <LoginRegisRoute>
+              <LayOut>
+                <Home />
+              </LayOut>
+            </LoginRegisRoute>
+          }
+        />
+
+        {/* Private route */}
+        <Route
+          path="/notification"
+          element={
+            <LoginRegisRoute>
+              <LayOut>
+                <Notification />
+              </LayOut>
+            </LoginRegisRoute>
+          }
+        />
       </Routes>
     </>
   );
