@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 export default function Login() {
+  const [_, setCookies] = useCookies(["token"]);
   let navigate = useNavigate();
   const [data, setData] = useState({
     email: undefined,
@@ -39,7 +40,7 @@ export default function Login() {
         config
       )
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
+        setCookies("token", res.data.token);
         navigate("/");
       })
       .catch((err) => {

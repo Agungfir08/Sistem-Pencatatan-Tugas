@@ -8,15 +8,15 @@ import { Route, Navigate, BrowserRouter, Routes } from "react-router-dom";
 import NotFound from "./page/NotFound";
 import Tes from "./context/tes";
 import Profile from "./page/Profile";
-import Cookies from "js-cookie";
-// import Cookies from 'universal-cookie';
+import { useCookies } from "react-cookie";
 import LayOut from "./layout/layout";
 
 export default function App() {
+  const [cookies, setCookies] = useCookies(["token"]);
   const LoginRegisRoute = (props) => {
-    if (localStorage.getItem("token") === null) {
-      return <Navigate to={"/login"} />;
-    } else if (localStorage.getItem("token") !== null) {
+    if (!cookies.token) {
+      return <Navigate to="/login" />;
+    } else {
       return props.children;
     }
   };
@@ -30,27 +30,12 @@ export default function App() {
 
         <Route path="/register" element={<Register />} />
 
-        <Route
-          path="/"
-          element={
-            <LoginRegisRoute>
-              <LayOut>
-                <Home />
-              </LayOut>
-            </LoginRegisRoute>
-          }
-        />
-
-        <Route
-          path="/notification"
-          element={
-            <LoginRegisRoute>
-              <LayOut>
-                <Notification />
-              </LayOut>
-            </LoginRegisRoute>
-          }
-        />
+        <LoginRegisRoute>
+          <LayOut>
+            <Route path="/" element={<Home />} />
+            <Route path="/notification" element={<Notification />} />
+          </LayOut>
+        </LoginRegisRoute>
 
         {/* <Route
             path="/profile"
