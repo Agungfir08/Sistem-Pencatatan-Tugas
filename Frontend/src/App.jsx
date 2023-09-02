@@ -9,7 +9,7 @@ import Notification from "./page/Notification";
 import Register from "./page/Register";
 
 export default function App() {
-  const [cookies] = useCookies(["token"]);
+  const [cookies, setCookies] = useCookies(["token"]);
 
   const LoginRegisRoute = (props) => {
     if (!cookies.token) {
