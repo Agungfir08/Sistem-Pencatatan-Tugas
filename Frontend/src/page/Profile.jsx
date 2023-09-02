@@ -4,14 +4,9 @@ axios.defaults.withCredentials = true;
 export default function Profile() {
   const [userData, setUserData] = useState([]);
   function getProfile() {
-    axios
-      .get("https://task-be-ashy.vercel.app/profile")
-      .then((res) => {
-        setUserData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    axios.get("https://task-be-ashy.vercel.app/profile").then((res) => {
+      setUserData(res.data.data);
+    });
   }
 
   useEffect(() => {
@@ -23,9 +18,8 @@ export default function Profile() {
         <h1 className="font-bold text-2xl">Profile Settings</h1>
         <div className="flex justify-center mt-6">
           <img
-            className="w-52 h-52 rounded-full object-center border border-black"
+            className="w-52 h-52 rounded-full object-center border border-gray-500"
             src={userData.profile_img}
-            alt="Rounded avatar"
           />
         </div>
         <div class="flow-root">
@@ -38,9 +32,11 @@ export default function Profile() {
                     {userData.name}
                   </p>
                 </div>
-                <div class="inline-flex items-center text-sm text-gray-500 underline">
+                <button
+                  class="inline-flex items-center text-sm text-gray-500 underline"
+                  type="button">
                   Edit
-                </div>
+                </button>
               </div>
             </li>
             <li class="py-3 ">
@@ -51,9 +47,11 @@ export default function Profile() {
                     {userData.email}
                   </p>
                 </div>
-                <div class="inline-flex items-center text-sm text-gray-500 underline">
+                <button
+                  class="inline-flex items-center text-sm text-gray-500 underline"
+                  type="button">
                   Edit
-                </div>
+                </button>
               </div>
             </li>
             <li class="py-3 sm:py-4">
@@ -64,9 +62,11 @@ export default function Profile() {
                     {userData.gender}
                   </p>
                 </div>
-                <div class="inline-flex items-center text-sm text-gray-500 underline">
+                <button
+                  class="inline-flex items-center text-sm text-gray-500 underline"
+                  type="button">
                   Edit
-                </div>
+                </button>
               </div>
             </li>
             <li />
