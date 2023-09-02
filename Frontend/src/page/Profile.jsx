@@ -2,15 +2,16 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 axios.defaults.withCredentials = true;
 export default function Profile() {
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    gender: "",
+    profile_img: "",
+  });
 
   function getProfile() {
     axios.get("https://task-be-ashy.vercel.app/profile").then((res) => {
-      if (res.status === 200) {
-        setUserData(res.data.data);
-      } else {
-        console.log(res.data);
-      }
+      setUserData(res.data.data);
     });
   }
 
