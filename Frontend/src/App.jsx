@@ -3,7 +3,12 @@ import Login from "./page/Login";
 import Home from "./page/Home";
 import Notification from "./page/Notification";
 import Register from "./page/Register";
-import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Navigate,
+  Routes,
+} from "react-router-dom";
 import NotFound from "./page/NotFound";
 import Profile from "./page/Profile";
 import { AuthProvider, useAuth } from "./context/AuthProvider";
@@ -21,7 +26,7 @@ export default function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <AuthProvider>
           <Routes>
             <Route path="*" element={<NotFound />} />
@@ -53,7 +58,7 @@ export default function App() {
             />
           </Routes>
         </AuthProvider>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }
