@@ -6,7 +6,6 @@ import Notification from "./page/Notification";
 import Register from "./page/Register";
 import { Route, Navigate, BrowserRouter, Routes } from "react-router-dom";
 import NotFound from "./page/NotFound";
-import Tes from "./context/tes";
 import Profile from "./page/Profile";
 import { useCookies } from "react-cookie";
 import LayOut from "./layout/layout";
@@ -24,16 +23,12 @@ export default function App() {
   return (
     <>
       <Routes>
-        {/* Unknown route */}
         <Route path="*" element={<NotFound />} />
 
-        {/* Login */}
         <Route path="/login" element={<Login />} />
 
-        {/* Register */}
         <Route path="/register" element={<Register />} />
 
-        {/* Private route */}
         <Route
           path="/"
           element={
@@ -44,14 +39,23 @@ export default function App() {
             </LoginRegisRoute>
           }
         />
-
-        {/* Private route */}
         <Route
           path="/notification"
           element={
             <LoginRegisRoute>
               <LayOut>
                 <Notification />
+              </LayOut>
+            </LoginRegisRoute>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <LoginRegisRoute>
+              <LayOut>
+                <Profile />
               </LayOut>
             </LoginRegisRoute>
           }

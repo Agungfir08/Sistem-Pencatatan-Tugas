@@ -22,7 +22,7 @@ export default function Sidebar() {
   }
   return (
     <>
-      <div class="fixed top-0 left-0 w-64 h-screen  shadow-lg">
+      <aside class="fixed top-0 left-0 w-64 h-screen  shadow-lg">
         <div class="h-full px-3 py-4 overflow-y-auto bg-white">
           <ul class="space-y-2 font-medium">
             <li>
@@ -139,10 +139,7 @@ export default function Sidebar() {
             </li>
           </ul>
         </div>
-      </div>
-      <div class=" ml-64 flex-1 p-4">
-        <Outlet />
-      </div>
+      </aside>
     </>
   );
 }
