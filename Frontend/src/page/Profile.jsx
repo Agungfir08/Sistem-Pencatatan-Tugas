@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-axios.defaults.withCredentials = true;
+
 export default function Profile() {
   const [userData, setUserData] = useState([]);
 
