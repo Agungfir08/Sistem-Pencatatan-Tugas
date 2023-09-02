@@ -1,16 +1,23 @@
 import React from "react";
 import axios from "axios";
+import { useAuth } from "../context/AuthProvider";
 axios.defaults.withCredentials = true;
 export default function Task({ task }) {
+  const { user } = useAuth();
   const config = {
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${user.token}`,
     },
   };
 
   function deleteTask() {
     axios
-      .delete(`https://task-be-ashy.vercel.app/task/${task.id}/delete`)
+      .delete(`https://task-be-ashy.vercel.app/task/${task.id}/delete`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
       .then((res) => {
         console.log(res.data.id);
         window.location.reload(true);

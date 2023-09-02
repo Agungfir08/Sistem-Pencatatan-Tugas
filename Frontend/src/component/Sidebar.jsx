@@ -13,7 +13,6 @@ export default function Sidebar() {
       .delete(`https://task-be-ashy.vercel.app/logout`)
       .then(() => {
         logout();
-        navigate("/login");
       })
       .catch((err) => {
         alert(err);

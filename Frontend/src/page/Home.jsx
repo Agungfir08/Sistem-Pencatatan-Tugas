@@ -3,9 +3,11 @@ import { useState } from "react";
 import Task from "../component/Task";
 import axios from "axios";
 import "flowbite";
+import { useAuth } from "../context/AuthProvider";
 axios.defaults.withCredentials = true;
 
 export default function Home() {
+  const { user } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [addTask, setAddTask] = useState({
@@ -43,9 +45,15 @@ export default function Home() {
   }
 
   function getTask() {
-    axios.get(`https://task-be-ashy.vercel.app/task`).then((res) => {
-      setTasks(res.data.data);
-    });
+    axios
+      .get(`https://task-be-ashy.vercel.app/task`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
+      .then((res) => {
+        setTasks(res.data.data);
+      });
   }
 
   function createTask(e) {
@@ -54,6 +62,7 @@ export default function Home() {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
       },
     };
 
