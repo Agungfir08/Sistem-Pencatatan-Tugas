@@ -5,6 +5,7 @@ const verifyToken = (req, res, next) => {
   // const token = window.localStorage.getItem('token')
 
   if (!token) return res.status(401).json({ message: "Token is Empty" });
+  if (err) return res.status(403).json({ message: err });
 
   jwt.verify(token, process.env.ACCESS_TOKEN, (err, decoded) => {
     console.log(err);
