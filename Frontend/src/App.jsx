@@ -1,68 +1,57 @@
 import * as React from "react";
 import Login from "./page/Login";
 import Home from "./page/Home";
-import Sidebar from "./component/Sidebar";
 import Notification from "./page/Notification";
 import Register from "./page/Register";
-import { Route, Navigate, BrowserRouter, Routes } from "react-router-dom";
+import { Route, Navigate, Routes } from "react-router-dom";
 import NotFound from "./page/NotFound";
-import Tes from "./context/tes";
 import Profile from "./page/Profile";
-import Cookies from "js-cookie";
-// import Cookies from 'universal-cookie';
+import { AuthProvider, useAuth } from "./context/AuthProvider";
 import LayOut from "./layout/layout";
 
 export default function App() {
+  const user = useAuth();
   const LoginRegisRoute = (props) => {
-    if (localStorage.getItem("token") === null) {
+    if (!user) {
       return <Navigate to={"/login"} />;
-    } else if (localStorage.getItem("token") !== null) {
+    } else {
       return props.children;
     }
   };
 
   return (
     <>
-      <Routes>
-        <Route path="*" element={<NotFound />} />
+      <AuthProvider>
+        <Routes>
+          <Route path="*" element={<NotFound />} />
 
-        <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route
-          path="/"
-          element={
-            <LoginRegisRoute>
-              <LayOut>
-                <Home />
-              </LayOut>
-            </LoginRegisRoute>
-          }
-        />
-
-        <Route
-          path="/notification"
-          element={
-            <LoginRegisRoute>
-              <LayOut>
-                <Notification />
-              </LayOut>
-            </LoginRegisRoute>
-          }
-        />
-
-        {/* <Route
-            path="/profile"
+          <Route
+            path="/"
             element={
               <LoginRegisRoute>
                 <LayOut>
-                  <Profile />
+                  <Home />
                 </LayOut>
               </LoginRegisRoute>
             }
-          /> */}
-      </Routes>
+          />
+
+          <Route
+            path="/notification"
+            element={
+              <LoginRegisRoute>
+                <LayOut>
+                  <Notification />
+                </LayOut>
+              </LoginRegisRoute>
+            }
+          />
+        </Routes>
+      </AuthProvider>
     </>
   );
 }

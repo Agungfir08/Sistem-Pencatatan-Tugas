@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 export default function Login() {
+  const { login } = useAuth();
   let navigate = useNavigate();
   const [data, setData] = useState({
     email: undefined,
@@ -38,7 +39,12 @@ export default function Login() {
         config
       )
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
+        const dataUser = {
+          id: res.data.id,
+          name: res.data.name,
+          token: res.data.token,
+        };
+        login(dataUser);
         navigate("/");
       })
       .catch((err) => {
