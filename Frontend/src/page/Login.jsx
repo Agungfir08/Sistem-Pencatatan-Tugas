@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+axios.defaults.withCredentials = true;
 
 export default function Login() {
   let navigate = useNavigate();

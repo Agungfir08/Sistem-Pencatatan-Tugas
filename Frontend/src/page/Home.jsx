@@ -3,6 +3,7 @@ import { useState } from "react";
 import Task from "../component/Task";
 import axios from "axios";
 import "flowbite";
+axios.defaults.withCredentials = true;
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);

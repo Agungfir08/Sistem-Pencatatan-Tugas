@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { useSignOut } from "react-auth-kit";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 export default function Sidebar() {
   let navigate = useNavigate();
