@@ -43,9 +43,9 @@ export default function Register() {
         config
       )
       .then((res) => {
-        if (res.data.message === "User Create Success") {
-          localStorage.setItem("token", res.data.token);
-          navigate("/");
+        if (res.status === 200) {
+          console.log("register berhasil");
+          navigate("/login");
         }
       })
       .catch((err) => {
