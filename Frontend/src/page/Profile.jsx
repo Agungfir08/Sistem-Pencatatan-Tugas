@@ -13,10 +13,10 @@ export default function Profile() {
       .get("https://task-be-ashy.vercel.app/profile")
       .then((res) => {
         setUserData({
-          name: res.data.name,
-          email: res.data.email,
-          gender: res.data.gender,
-          profile_img: res.data.profile_img,
+          name: res.data.data.name,
+          email: res.data.data.email,
+          gender: res.data.data.gender,
+          profile_img: res.data.data.profile_img,
         });
       })
       .catch((err) => {
