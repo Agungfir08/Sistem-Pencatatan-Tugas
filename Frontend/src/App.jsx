@@ -30,12 +30,27 @@ export default function App() {
 
         <Route path="/register" element={<Register />} />
 
-        <LoginRegisRoute>
-          <LayOut>
-            <Route path="/" element={<Home />} />
-            <Route path="/notification" element={<Notification />} />
-          </LayOut>
-        </LoginRegisRoute>
+        <Route
+          path="/"
+          element={
+            <LoginRegisRoute>
+              <LayOut>
+                <Home />
+              </LayOut>
+            </LoginRegisRoute>
+          }
+        />
+
+        <Route
+          path="/notification"
+          element={
+            <LoginRegisRoute>
+              <LayOut>
+                <Notification />
+              </LayOut>
+            </LoginRegisRoute>
+          }
+        />
 
         {/* <Route
             path="/profile"
