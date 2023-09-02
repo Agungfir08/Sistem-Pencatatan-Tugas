@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-axios.defaults.withCredentials = true;
-
 export default function Register() {
   const navigate = useNavigate();
   const [data, setData] = useState({
