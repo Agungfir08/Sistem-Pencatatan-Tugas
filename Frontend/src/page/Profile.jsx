@@ -12,12 +12,7 @@ export default function Profile() {
     axios
       .get("https://task-be-ashy.vercel.app/profile")
       .then((res) => {
-        setUserData({
-          name: res.data.data.name,
-          email: res.data.data.email,
-          gender: res.data.data.gender,
-          profile_img: res.data.data.profile_img,
-        });
+        setUserData(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -33,7 +28,7 @@ export default function Profile() {
         <h1 className="font-bold text-2xl">Profile Settings</h1>
         <div className="flex justify-center mt-6">
           <img
-            className="w-52 h-52 rounded-full object-center bg-black"
+            className="w-52 h-52 rounded-full object-center border border-black"
             src={userData.profile_img}
             alt="Rounded avatar"
           />
