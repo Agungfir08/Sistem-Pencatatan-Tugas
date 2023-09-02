@@ -15,8 +15,8 @@ import { AuthProvider, useAuth } from "./context/AuthProvider";
 import LayOut from "./layout/layout";
 
 export default function App() {
-  const { user } = useAuth();
   const LoginRegisRoute = (props) => {
+    const { user } = useAuth();
     if (!user) {
       return <Navigate to={"/login"} />;
     } else {
