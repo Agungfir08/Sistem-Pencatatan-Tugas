@@ -6,7 +6,7 @@ export default function Empty() {
       <div class="py-8 px-4 mx-auto max-w-screen-xl ">
         <div class="mx-auto max-w-screen-sm text-center justify-center">
           <svg
-            className=" w-32 h-32 text-gray-500"
+            className=" w-32 h-32 text-gray-500 text-center"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
