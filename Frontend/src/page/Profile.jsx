@@ -5,12 +5,18 @@ export default function Profile() {
   const [userData, setUserData] = useState([]);
 
   function getProfile() {
-    axios.get("https://task-be-ashy.vercel.app/profile").then((res) => {
-      if (res.status === 200) {
-        alert("Success");
-        setUserData(res.data.data);
-      }}).catch((err) => {
-      alert(err)});
+    fetch("https://task-be-ashy.vercel.app/profile", {
+      method: "GET",
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          alert("Success");
+          setUserData(res.data.data);
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 
   useEffect(() => {
@@ -32,8 +38,8 @@ export default function Profile() {
             <li class="py-3">
               <div class="flex items-center space-x-4">
                 <div class="flex-1 min-w-0">
-                  <p class="text-sm  text-gray-700 ">Name</p>
-                  <p class=" text-sm font-semibold text-gray-900 ">
+                  <p class="text-sm font-semibold text-gray-700 ">Name</p>
+                  <p class=" text-sm font-bold text-gray-900 ">
                     {userData.name}
                   </p>
                 </div>
@@ -47,8 +53,8 @@ export default function Profile() {
             <li class="py-3 ">
               <div class="flex items-center space-x-4">
                 <div class="flex-1 min-w-0">
-                  <p class="text-sm  text-gray-700 ">Email</p>
-                  <p class=" text-sm font-semibold text-gray-900 ">
+                  <p class="text-sm font-semibold text-gray-700 ">Email</p>
+                  <p class=" text-sm font-bold text-gray-900 ">
                     {userData.email}
                   </p>
                 </div>
@@ -62,8 +68,8 @@ export default function Profile() {
             <li class="py-3 sm:py-4">
               <div class="flex items-center space-x-4">
                 <div class="flex-1 min-w-0">
-                  <p class="text-sm  text-gray-700 ">Gender</p>
-                  <p class=" text-sm font-semibold text-gray-900 ">
+                  <p class="text-sm font-semibold text-gray-700 ">Gender</p>
+                  <p class=" text-sm font-bold text-gray-900 ">
                     {userData.gender}
                   </p>
                 </div>
