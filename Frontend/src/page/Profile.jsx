@@ -12,7 +12,7 @@ export default function Profile() {
         if (res.status === 200) {
           alert("Success");
           setUserData(res.data.data);
-          console.log(res.data.data);
+          console.log(userData);
         }
       })
       .catch((err) => {
