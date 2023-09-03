@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -26,13 +26,9 @@ export default function Sidebar() {
     <div className="fixed top-0 left-0 w-64 h-screen  shadow-lg">
       <div className="h-full px-3 py-4 overflow-y-auto bg-white">
         <div className="space-y-2 font-medium">
-          <Link
+          <NavLink
             to={"/"}
-            className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
-              location.pathname === "/"
-                ? "text-white bg-[#28a745]"
-                : "text-[#28a745]"
-            }`}>
+            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] group">
             <svg
               className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
                 location.pathname === "/" ? "stroke-white" : "stroke-[#28a745]"
@@ -51,15 +47,11 @@ export default function Sidebar() {
             <span class="flex-1 ml-3 whitespace-nowrap group-hover:text-white">
               Home
             </span>
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to={"/notification"}
-            className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
-              location.pathname === "/notification"
-                ? "text-white bg-[#28a745]"
-                : "text-[#28a745]"
-            }`}>
+            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] group">
             <svg
               className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
                 location.pathname === "/notification"
@@ -77,18 +69,14 @@ export default function Sidebar() {
                 d="M8 3.464V1.1m0 2.365a5.338 5.338 0 0 1 5.133 5.368v1.8c0 2.386 1.867 2.982 1.867 4.175C15 15.4 15 16 14.462 16H1.538C1 16 1 15.4 1 14.807c0-1.193 1.867-1.789 1.867-4.175v-1.8A5.338 5.338 0 0 1 8 3.464ZM4.54 16a3.48 3.48 0 0 0 6.92 0H4.54Z"
               />
             </svg>
-            <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
+            <span class="flex-1 ml-3 whitespace-nowrap group-hover:text-white">
               Notification
             </span>
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to={"/security"}
-            className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
-              location.pathname === "/security"
-                ? "text-white bg-[#28a745]"
-                : "text-[#28a745]"
-            }`}>
+            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] group">
             <svg
               className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
                 location.pathname === "/security"
@@ -106,18 +94,14 @@ export default function Sidebar() {
                 d="M11.5 8V4.5a3.5 3.5 0 1 0-7 0V8M8 12v3M2 8h12a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"
               />
             </svg>
-            <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
+            <span class="flex-1 ml-3 whitespace-nowrap group-hover:text-white">
               Security
             </span>
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to={"/profile"}
-            className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
-              location.pathname === "/profile"
-                ? "text-white bg-[#28a745]"
-                : "text-[#28a745]"
-            }`}>
+            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] group">
             <svg
               className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
                 location.pathname === "/profile"
@@ -135,10 +119,10 @@ export default function Sidebar() {
                 d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 11 14H9a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 10 19Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
               />
             </svg>
-            <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
+            <span class="flex-1 ml-3 whitespace-nowrap group-hover:text-white">
               Profile
             </span>
-          </Link>
+          </NavLink>
 
           <button
             onClick={deleteToken}
