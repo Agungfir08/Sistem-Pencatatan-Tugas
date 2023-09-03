@@ -56,6 +56,7 @@ export default function Login() {
           console.log(err.res.data.message);
         } else {
           alert(err.message);
+          console.log(err.message);
         }
       });
   }
