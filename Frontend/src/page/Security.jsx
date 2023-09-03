@@ -17,7 +17,7 @@ export default function Security() {
   function submit(e) {
     e.preventDefault();
 
-    if (data.newPassword !== data.confirmPassword && data === "") {
+    if (data.newPassword !== data.confirmPassword || data === "") {
       return alert("Password not match");
     }
 
