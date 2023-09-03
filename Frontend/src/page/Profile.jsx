@@ -33,7 +33,7 @@ export default function Profile() {
         <div className="flex justify-center mt-6">
           <img
             className="w-52 h-52 rounded-full object-center border border-gray-500"
-            src={userData[0].profile_img}
+            src={userData.profile_img}
           />
         </div>
         <div class="flow-root">
@@ -43,7 +43,7 @@ export default function Profile() {
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-semibold text-gray-700 ">Name</p>
                   <p class=" text-lg font-bold text-gray-900 ">
-                    {userData[0].name}
+                    {userData.name}
                   </p>
                 </div>
                 <button
@@ -58,7 +58,7 @@ export default function Profile() {
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-semibold text-gray-700 ">Email</p>
                   <p class=" text-lg font-bold text-gray-900 ">
-                    {userData[0].email}
+                    {userData.email}
                   </p>
                 </div>
                 <button
@@ -73,7 +73,7 @@ export default function Profile() {
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-semibold text-gray-700 ">Gender</p>
                   <p class=" text-lg font-bold text-gray-900 ">
-                    {userData[0].gender}
+                    {userData.gender}
                   </p>
                 </div>
                 <button
