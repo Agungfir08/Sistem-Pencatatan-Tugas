@@ -28,7 +28,7 @@ export default function Sidebar() {
         <div className="space-y-2 font-medium">
           <NavLink
             to={"/"}
-            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] group">
+            className="flex items-center p-2 rounded-lg hover:bg-[#28a745] text-[#28a745] group">
             <svg
               className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
                 location.pathname === "/" ? "stroke-white" : "stroke-[#28a745]"
@@ -51,7 +51,7 @@ export default function Sidebar() {
 
           <NavLink
             to={"/notification"}
-            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] group">
+            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] text-[#28a745] group">
             <svg
               className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
                 location.pathname === "/notification"
@@ -76,7 +76,7 @@ export default function Sidebar() {
 
           <NavLink
             to={"/security"}
-            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] group">
+            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] text-[#28a745] group">
             <svg
               className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
                 location.pathname === "/security"
@@ -101,7 +101,7 @@ export default function Sidebar() {
 
           <NavLink
             to={"/profile"}
-            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] group">
+            className="flex items-center p-2  rounded-lg hover:bg-[#28a745] text-[#28a745] group">
             <svg
               className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
                 location.pathname === "/profile"
