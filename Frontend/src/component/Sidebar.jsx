@@ -22,18 +22,6 @@ export default function Sidebar() {
 
   const location = useLocation();
 
-  function isActive() {
-    if (
-      location.pathname === "/" ||
-      location.pathname === "/notification" ||
-      location.pathname === "/security" ||
-      location.pathname === "/profile"
-    ) {
-      return "stroke-white";
-    } else {
-      return "stroke-[#28a745]";
-    }
-  }
   return (
     <>
       <div className="fixed top-0 left-0 w-64 h-screen  shadow-lg">
@@ -41,9 +29,17 @@ export default function Sidebar() {
           <div className="space-y-2 font-medium">
             <NavLink
               to={"/"}
-              className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
+              className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
+                location.pathname === "/"
+                  ? "text-white bg-[#28a745]"
+                  : "text-[#28a745]"
+              }`}>
               <svg
-                className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${isActive()}`}
+                className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
+                  location.pathname === "/"
+                    ? "stroke-white"
+                    : "stroke-[#28a745]"
+                }`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -62,9 +58,17 @@ export default function Sidebar() {
 
             <NavLink
               to={"/notification"}
-              className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
+              className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
+                location.pathname === "/notification"
+                  ? "text-white bg-[#28a745]"
+                  : "text-[#28a745]"
+              }`}>
               <svg
-                className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745] "
+                className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
+                  location.pathname === "/notification"
+                    ? "stroke-white"
+                    : "stroke-[#28a745]"
+                }`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -79,16 +83,21 @@ export default function Sidebar() {
               <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
                 Notification
               </span>
-              {/* <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
-                  3
-                </span> */}
             </NavLink>
 
             <NavLink
               to={"/security"}
-              className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
+              className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
+                location.pathname === "/security"
+                  ? "text-white bg-[#28a745]"
+                  : "text-[#28a745]"
+              }`}>
               <svg
-                className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745] "
+                className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
+                  location.pathname === "/security"
+                    ? "stroke-white"
+                    : "stroke-[#28a745]"
+                }`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -107,9 +116,17 @@ export default function Sidebar() {
 
             <NavLink
               to={"/profile"}
-              className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
+              className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
+                location.pathname === "/profile"
+                  ? "text-white bg-[#28a745]"
+                  : "text-[#28a745]"
+              }`}>
               <svg
-                className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745] "
+                className={`w-6 h-6 text-gray-800 group-hover:stroke-white ${
+                  location.pathname === "/profile"
+                    ? "stroke-white"
+                    : "stroke-[#28a745]"
+                }`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
