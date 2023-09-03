@@ -1,12 +1,12 @@
 import * as React from "react";
 import Login from "./page/Login";
 import Home from "./page/Home";
-import Sidebar from "./component/Sidebar";
 import Notification from "./page/Notification";
 import Register from "./page/Register";
-import { Route, Navigate, BrowserRouter, Routes } from "react-router-dom";
+import { Route, Navigate, Routes } from "react-router-dom";
 import NotFound from "./page/NotFound";
 import Profile from "./page/Profile";
+import Security from "./page/Security";
 import { useCookies } from "react-cookie";
 import LayOut from "./layout/layout";
 
@@ -56,6 +56,17 @@ export default function App() {
             <LoginRegisRoute>
               <LayOut>
                 <Profile />
+              </LayOut>
+            </LoginRegisRoute>
+          }
+        />
+
+        <Route
+          path="/security"
+          element={
+            <LoginRegisRoute>
+              <LayOut>
+                <Security />
               </LayOut>
             </LoginRegisRoute>
           }
