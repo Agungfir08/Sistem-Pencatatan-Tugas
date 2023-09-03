@@ -6,9 +6,9 @@ export default function Security() {
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
   const [data, setAllData] = useState({
-    oldPassword: undefined,
-    newPassword: undefined,
-    confirmPassword: undefined,
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
   function handleChange(e) {
@@ -18,7 +18,7 @@ export default function Security() {
   function submit(e) {
     e.preventDefault();
 
-    if (data.newPassword === data.confirmPassword || data !== undefined) {
+    if (data.newPassword === data.confirmPassword && data !== "") {
       setDisabled(false);
     }
 
