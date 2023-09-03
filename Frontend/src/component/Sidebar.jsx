@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -26,9 +25,14 @@ export default function Sidebar() {
         <div class="h-full px-3 py-4 overflow-y-auto bg-white">
           <ul class="space-y-2 font-medium">
             <li>
-              <Link
+              <NavLink
                 to={"/"}
-                class="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
+                class="flex items-center p-2 rounded-lg hover:bg-[#28a745] group"
+                className={({ isActive }) => {
+                  return isActive
+                    ? "text-[#28a745]] bg-white ring-2 ring-[#28a745]/75"
+                    : "text-[#28a745]";
+                }}>
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
                   aria-hidden="true"
@@ -45,12 +49,17 @@ export default function Sidebar() {
                 <span class="flex-1 ml-3 whitespace-nowrap group-hover:text-white">
                   Home
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to={"/notification"}
-                class="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
+                class="flex items-center p-2 rounded-lg hover:bg-[#28a745] group"
+                className={({ isActive }) => {
+                  return isActive
+                    ? "text-[#28a745]] bg-white ring-2 ring-[#28a745]/75"
+                    : "text-[#28a745]";
+                }}>
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
                   aria-hidden="true"
@@ -70,12 +79,17 @@ export default function Sidebar() {
                 {/* <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
                   3
                 </span> */}
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to={"/security"}
-                className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
+                class="flex items-center p-2 rounded-lg hover:bg-[#28a745] group"
+                className={({ isActive }) => {
+                  return isActive
+                    ? "text-[#28a745]] bg-white ring-2 ring-[#28a745]/75"
+                    : "text-[#28a745]";
+                }}>
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
                   aria-hidden="true"
@@ -92,12 +106,17 @@ export default function Sidebar() {
                 <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
                   Security
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to={"/profile"}
-                class="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
+                class="flex items-center p-2 rounded-lg hover:bg-[#28a745] group"
+                className={({ isActive }) => {
+                  return isActive
+                    ? "text-[#28a745]] bg-white ring-2 ring-[#28a745]/75"
+                    : "text-[#28a745]";
+                }}>
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
                   aria-hidden="true"
@@ -114,7 +133,7 @@ export default function Sidebar() {
                 <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
                   Profile
                 </span>
-              </Link>
+              </NavLink>
             </li>
             <li>
               <button
