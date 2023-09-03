@@ -29,7 +29,7 @@ export default function Security() {
     };
 
     axios
-      .post(
+      .put(
         "https://task-be-ashy.vercel.app/changePassword",
         {
           oldPass: data.oldPassword,
@@ -47,7 +47,8 @@ export default function Security() {
 
   useEffect(() => {
     console.log(data);
-  }, [data]);
+    console.log(disabled);
+  }, [data, disabled]);
 
   return (
     <>
