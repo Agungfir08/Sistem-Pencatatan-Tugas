@@ -55,6 +55,8 @@ export default function Register() {
       .then((res) => {
         if (res.status === 200) {
           navigate("/login");
+        } else if (res.status === 409) {
+          alert("Email already exists");
         }
       })
       .catch((err) => {
