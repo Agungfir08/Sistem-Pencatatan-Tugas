@@ -21,18 +21,13 @@ export default function Sidebar() {
   }
   return (
     <>
-      <aside class="fixed top-0 left-0 w-64 h-screen  shadow-lg">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-white">
-          <ul class="space-y-2 font-medium">
+      <aside className="fixed top-0 left-0 w-64 h-screen  shadow-lg">
+        <div className="h-full px-3 py-4 overflow-y-auto bg-white">
+          <ul className="space-y-2 font-medium">
             <li>
               <NavLink
                 to={"/"}
-                class="flex items-center p-2 rounded-lg hover:bg-[#28a745] group"
-                className={({ isActive }) => {
-                  return isActive
-                    ? "text-[#28a745]] bg-white ring-2 ring-[#28a745]/75"
-                    : "text-[#28a745]";
-                }}>
+                className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
                   aria-hidden="true"
@@ -54,12 +49,7 @@ export default function Sidebar() {
             <li>
               <NavLink
                 to={"/notification"}
-                class="flex items-center p-2 rounded-lg hover:bg-[#28a745] group"
-                className={({ isActive }) => {
-                  return isActive
-                    ? "text-[#28a745]] bg-white ring-2 ring-[#28a745]/75"
-                    : "text-[#28a745]";
-                }}>
+                className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
                   aria-hidden="true"
@@ -84,12 +74,7 @@ export default function Sidebar() {
             <li>
               <NavLink
                 to={"/security"}
-                class="flex items-center p-2 rounded-lg hover:bg-[#28a745] group"
-                className={({ isActive }) => {
-                  return isActive
-                    ? "text-[#28a745]] bg-white ring-2 ring-[#28a745]/75"
-                    : "text-[#28a745]";
-                }}>
+                className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
                   aria-hidden="true"
@@ -111,12 +96,7 @@ export default function Sidebar() {
             <li>
               <NavLink
                 to={"/profile"}
-                class="flex items-center p-2 rounded-lg hover:bg-[#28a745] group"
-                className={({ isActive }) => {
-                  return isActive
-                    ? "text-[#28a745]] bg-white ring-2 ring-[#28a745]/75"
-                    : "text-[#28a745]";
-                }}>
+                class="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
                   aria-hidden="true"
