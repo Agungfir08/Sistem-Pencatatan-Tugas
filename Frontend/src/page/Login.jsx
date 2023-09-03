@@ -47,12 +47,10 @@ export default function Login() {
         if (res.status === 200) {
           setCookies("token", res.data.token);
           navigate("/");
-        } else if (res.status === 400) {
-          alert("Password incorrect!");
         }
       })
       .catch((err) => {
-        alert(err);
+        alert(err.message);
       });
   }
 
