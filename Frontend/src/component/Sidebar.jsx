@@ -33,7 +33,7 @@ export default function Sidebar() {
                   color: isActive ? "white" : "",
                 })}>
                 <svg
-                  className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
+                  className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745] active:stroke-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -59,7 +59,7 @@ export default function Sidebar() {
                   color: isActive ? "white" : "",
                 })}>
                 <svg
-                  className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
+                  className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745] active:stroke-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -88,7 +88,7 @@ export default function Sidebar() {
                   color: isActive ? "white" : "",
                 })}>
                 <svg
-                  className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
+                  className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745] active:stroke-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -114,10 +114,7 @@ export default function Sidebar() {
                   color: isActive ? "white" : "",
                 })}>
                 <svg
-                  className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
-                  style={({ isActive }) => ({
-                    stroke: isActive ? "white" : "",
-                  })}
+                  className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745] active:stroke-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
