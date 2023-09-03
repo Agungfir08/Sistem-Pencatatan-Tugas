@@ -54,12 +54,14 @@ export default function Register() {
       )
       .then((res) => {
         if (res.status === 200) {
+          alert(res.data.message);
           navigate("/login");
         }
       })
       .catch((err) => {
         if (err.res) {
           alert(err.res.data.message);
+          console.log(err.res.data.message);
         } else {
           alert(err.message);
         }

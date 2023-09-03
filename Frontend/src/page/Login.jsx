@@ -45,6 +45,7 @@ export default function Login() {
       )
       .then((res) => {
         if (res.status === 200) {
+          alert(res.data.message);
           setCookies("token", res.data.token);
           navigate("/");
         }
@@ -52,6 +53,7 @@ export default function Login() {
       .catch((err) => {
         if (err.res) {
           alert(err.res.data.message);
+          console.log(err.res.data.message);
         } else {
           alert(err.message);
         }
