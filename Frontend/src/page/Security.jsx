@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -6,9 +6,9 @@ export default function Security() {
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
   const [data, setAllData] = useState({
-    oldPassword: "",
-    newPassword: "",
-    confirmPassword: "",
+    oldPassword: undefined,
+    newPassword: undefined,
+    confirmPassword: undefined,
   });
 
   function handleChange(e) {
@@ -18,7 +18,7 @@ export default function Security() {
   function submit(e) {
     e.preventDefault();
 
-    if (data.newPassword === data.confirmPassword || data !== "") {
+    if (data.newPassword === data.confirmPassword || data !== undefined) {
       setDisabled(false);
     }
 
@@ -44,6 +44,10 @@ export default function Security() {
         }
       });
   }
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <>
@@ -120,7 +124,7 @@ export default function Security() {
                 <button
                   disabled={disabled}
                   type="submit"
-                  class=" w-40 text-white bg-green-400  font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                  class=" w-40 text-white bg-green-400 hover:bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                   Change password
                 </button>
               </div>
