@@ -6,27 +6,10 @@ export default function Profile() {
   const [userData, setUserData] = useState({});
 
   function getProfile() {
-    axios
-      .get("https://task-be-ashy.vercel.app/profile")
-      .then((res) => {
-        if (res.status === 200) {
-          alert("Success");
-          setUserData({
-            name: res.data.data[0].name,
-            email: res.data.data[0].email,
-            gender: res.data.data[0].gender,
-            profile_img: res.data.data[0].profile_img,
-          });
-        }
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    axios.get("https://task-be-ashy.vercel.app/profile").then((res) => {
+      setUserData(res.data.data[0]);
+    });
   }
-
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
 
   useEffect(() => {
     getProfile();
