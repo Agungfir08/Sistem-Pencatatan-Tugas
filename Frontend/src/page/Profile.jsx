@@ -11,7 +11,7 @@ export default function Profile() {
       .then((res) => {
         if (res.status === 200) {
           alert("Success");
-          setUserData(res.data);
+          setUserData(res.data.data);
         }
       })
       .catch((err) => {
@@ -34,9 +34,8 @@ export default function Profile() {
           <img
             className="w-52 h-52 rounded-full object-center border border-gray-500"
             src={
-              userData.profile_img
-                ? userData.profile_img
-                : "https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+              userData[0].profile_img ||
+              "https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
             }
           />
         </div>
@@ -47,7 +46,7 @@ export default function Profile() {
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-semibold text-gray-700 ">Name</p>
                   <p class=" text-lg font-bold text-gray-900 ">
-                    {userData.name}
+                    {userData[0].name}
                   </p>
                 </div>
                 <button
@@ -62,7 +61,7 @@ export default function Profile() {
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-semibold text-gray-700 ">Email</p>
                   <p class=" text-lg font-bold text-gray-900 ">
-                    {userData.email}
+                    {userData[0].email}
                   </p>
                 </div>
                 <button
@@ -77,7 +76,7 @@ export default function Profile() {
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-semibold text-gray-700 ">Gender</p>
                   <p class=" text-lg font-bold text-gray-900 ">
-                    {userData.gender}
+                    {userData[0].gender}
                   </p>
                 </div>
                 <button
