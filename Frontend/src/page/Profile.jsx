@@ -3,7 +3,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 export default function Profile() {
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState({});
 
   function getProfile() {
     axios
@@ -11,7 +11,13 @@ export default function Profile() {
       .then((res) => {
         if (res.status === 200) {
           alert("Success");
-          setUserData(res.data.data);
+          setUserData({
+            name: res.data.data.name,
+            email: res.data.data.email,
+            gender: res.data.data.gender,
+            profile_img: res.data.data.profile_img,
+          });
+          console.log(`name ${res.data.data.name}`);
         }
       })
       .catch((err) => {
