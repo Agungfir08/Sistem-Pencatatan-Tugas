@@ -1,8 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 export default function Profile() {
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState(null);
 
   async function getProfile() {
     await axios
@@ -10,7 +11,7 @@ export default function Profile() {
       .then((res) => {
         if (res.status === 200) {
           alert("Success");
-          setUserData(res.data);
+          setUserData(res.data.data);
         }
       })
       .catch((err) => {
