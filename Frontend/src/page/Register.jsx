@@ -7,11 +7,11 @@ axios.defaults.withCredentials = true;
 export default function Register() {
   const navigate = useNavigate();
   const [data, setData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    gender: "",
+    name: undefined,
+    email: undefined,
+    password: undefined,
+    confirmPassword: undefined,
+    gender: undefined,
   });
 
   function handleChange(e) {
@@ -54,7 +54,7 @@ export default function Register() {
         }
       })
       .catch((err) => {
-        alert(err);
+        alert(err.data);
       });
   }
 
