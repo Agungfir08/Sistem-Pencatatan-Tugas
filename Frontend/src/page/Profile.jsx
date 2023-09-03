@@ -3,7 +3,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 export default function Profile() {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState([]);
 
   async function getProfile() {
     await axios
@@ -30,7 +30,11 @@ export default function Profile() {
         <div className="flex justify-center mt-6">
           <img
             className="w-52 h-52 rounded-full object-center border border-gray-500"
-            src={userData.profile_img}
+            src={
+              userData.profile_img
+                ? userData.profile_img
+                : "https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+            }
           />
         </div>
         <div class="flow-root">
