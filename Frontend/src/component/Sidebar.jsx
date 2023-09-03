@@ -74,7 +74,7 @@ export default function Sidebar() {
             </li>
             <li>
               <Link
-                to={"/notfound"}
+                to={"/security"}
                 className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
