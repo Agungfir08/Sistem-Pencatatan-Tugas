@@ -20,7 +20,7 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    console.log(userData);
+    console.log(userData.name);
   }, [userData]);
 
   useEffect(() => {
