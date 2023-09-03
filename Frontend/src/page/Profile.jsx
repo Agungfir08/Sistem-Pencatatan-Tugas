@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 export default function Profile() {
   const [userData, setUserData] = useState([]);
 
-  function getProfile() {
-    fetch("https://task-be-ashy.vercel.app/profile", {
-      method: "GET",
-    })
+  async function getProfile() {
+    await axios
+      .get("https://task-be-ashy.vercel.app/profile")
       .then((res) => {
         if (res.status === 200) {
           alert("Success");
