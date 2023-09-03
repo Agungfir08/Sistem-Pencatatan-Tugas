@@ -58,7 +58,11 @@ export default function Register() {
         }
       })
       .catch((err) => {
-        alert(err.messaage);
+        if (err.res) {
+          alert(err.res.data.message);
+        } else {
+          alert(err.message);
+        }
       });
   }
 

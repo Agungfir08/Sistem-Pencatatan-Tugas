@@ -50,7 +50,11 @@ export default function Login() {
         }
       })
       .catch((err) => {
-        alert(err.message);
+        if (err.res) {
+          alert(err.res.data.message);
+        } else {
+          alert(err.message);
+        }
       });
   }
 
