@@ -12,6 +12,7 @@ export default function Profile() {
         if (res.status === 200) {
           alert("Success");
           setUserData(res.data.data);
+          console.log(res.data.data);
         }
       })
       .catch((err) => {
@@ -21,7 +22,6 @@ export default function Profile() {
 
   useEffect(() => {
     getProfile();
-    console.log(userData);
   }, []);
   return (
     <>
@@ -43,7 +43,7 @@ export default function Profile() {
               <div class="flex items-center space-x-4">
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-semibold text-gray-700 ">Name</p>
-                  <p class=" text-sm font-bold text-gray-900 ">
+                  <p class=" text-lg font-bold text-gray-900 ">
                     {userData.name}
                   </p>
                 </div>
@@ -58,7 +58,7 @@ export default function Profile() {
               <div class="flex items-center space-x-4">
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-semibold text-gray-700 ">Email</p>
-                  <p class=" text-sm font-bold text-gray-900 ">
+                  <p class=" text-lg font-bold text-gray-900 ">
                     {userData.email}
                   </p>
                 </div>
@@ -73,7 +73,7 @@ export default function Profile() {
               <div class="flex items-center space-x-4">
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-semibold text-gray-700 ">Gender</p>
-                  <p class=" text-sm font-bold text-gray-900 ">
+                  <p class=" text-lg font-bold text-gray-900 ">
                     {userData.gender}
                   </p>
                 </div>
