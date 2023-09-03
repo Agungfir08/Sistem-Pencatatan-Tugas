@@ -12,12 +12,11 @@ export default function Profile() {
         if (res.status === 200) {
           alert("Success");
           setUserData({
-            name: res.data.data.name,
-            email: res.data.data.email,
-            gender: res.data.data.gender,
-            profile_img: res.data.data.profile_img,
+            name: res.data.data[0].name,
+            email: res.data.data[0].email,
+            gender: res.data.data[0].gender,
+            profile_img: res.data.data[0].profile_img,
           });
-          console.log(`name ${res.data.data[0].name}`);
         }
       })
       .catch((err) => {
