@@ -17,7 +17,7 @@ export default function Profile() {
             gender: res.data.data.gender,
             profile_img: res.data.data.profile_img,
           });
-          console.log(`name ${res.data.data.name}`);
+          console.log(`name ${res.data.data[0].name}`);
         }
       })
       .catch((err) => {
