@@ -5,18 +5,12 @@ export default function Profile() {
   const [userData, setUserData] = useState([]);
 
   function getProfile() {
-    try {
-      axios
-        .get("https://task-be-ashy.vercel.app/profile")
-        .then((res) => {
-          setUserData(res.data.data);
-        })
-        .catch((err) => {
-          alert(err);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    axios.get("https://task-be-ashy.vercel.app/profile").then((res) => {
+      if (res.status === 200) {
+        alert("Success");
+        setUserData(res.data.data);
+      }}).catch((err) => {
+      alert(err)});
   }
 
   useEffect(() => {
