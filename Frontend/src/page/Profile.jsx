@@ -5,8 +5,8 @@ axios.defaults.withCredentials = true;
 export default function Profile() {
   const [userData, setUserData] = useState({});
 
-  function getProfile() {
-    axios.get("https://task-be-ashy.vercel.app/profile").then((res) => {
+  async function getProfile() {
+    await axios.get("https://task-be-ashy.vercel.app/profile").then((res) => {
       setUserData(res.data.data[0]);
     });
   }

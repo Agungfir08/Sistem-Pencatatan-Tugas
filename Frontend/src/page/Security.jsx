@@ -4,7 +4,6 @@ import axios from "axios";
 
 export default function Security() {
   const navigate = useNavigate();
-  const [disabled, setDisabled] = useState(true);
   const [data, setAllData] = useState({
     oldPassword: "",
     newPassword: "",
@@ -18,8 +17,8 @@ export default function Security() {
   function submit(e) {
     e.preventDefault();
 
-    if (data.newPassword === data.confirmPassword && data !== "") {
-      setDisabled(false);
+    if (data.newPassword !== data.confirmPassword && data === "") {
+      return alert("Password not match");
     }
 
     const config = {
@@ -47,8 +46,7 @@ export default function Security() {
 
   useEffect(() => {
     console.log(data);
-    console.log(disabled);
-  }, [data, disabled]);
+  }, [data]);
 
   return (
     <>
@@ -123,7 +121,6 @@ export default function Security() {
               </div>
               <div class="flex justify-end">
                 <button
-                  disabled={disabled}
                   type="submit"
                   class=" w-40 text-white bg-green-400 hover:bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                   Change password
