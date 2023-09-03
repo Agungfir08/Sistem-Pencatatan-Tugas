@@ -3,10 +3,10 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 export default function Profile() {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState([]);
 
-  async function getProfile() {
-    await axios
+  function getProfile() {
+    axios
       .get("https://task-be-ashy.vercel.app/profile")
       .then((res) => {
         if (res.status === 200) {
@@ -21,7 +21,7 @@ export default function Profile() {
 
   useEffect(() => {
     console.log(userData);
-  }, []);
+  }, [userData]);
 
   useEffect(() => {
     getProfile();
