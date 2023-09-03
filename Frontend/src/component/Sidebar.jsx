@@ -119,7 +119,7 @@ export default function Sidebar() {
               <button
                 onClick={deleteToken}
                 type="button"
-                className="text-white hover:text-[#28a745] w-full flex justify-center bg-[#28a745] gap-x-2 hover:bg-white hover:ring-2 hover:ring-[#28a745]/75 focus:ring-2 focus:outline-none focus:ring-[#28a745] font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 group">
+                className="text-white hover:text-[#28a745] w-full flex justify-center bg-[#28a745] gap-x-2 hover:bg-white hover:ring-2 hover:ring-[#28a745]/75 focus:ring-2 focus:outline-none focus:ring-[#28a745] font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center mr-2 mb-2 group">
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-[#28a745] stroke-white"
                   aria-hidden="true"
