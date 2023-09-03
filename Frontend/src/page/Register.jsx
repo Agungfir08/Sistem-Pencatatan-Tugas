@@ -7,11 +7,11 @@ axios.defaults.withCredentials = true;
 export default function Register() {
   const navigate = useNavigate();
   const [data, setData] = useState({
-    name: undefined,
-    email: undefined,
-    password: undefined,
-    confirmPassword: undefined,
-    gender: undefined,
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
   });
 
   function handleChange(e) {
@@ -24,6 +24,10 @@ export default function Register() {
 
   function submit(e) {
     e.preventDefault();
+
+    if (data.password !== data.confirmPassword || data === "") {
+      return alert("Password not match");
+    }
 
     const config = {
       headers: {

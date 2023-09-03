@@ -4,7 +4,6 @@ import Home from "./page/Home";
 import Notification from "./page/Notification";
 import Register from "./page/Register";
 import { Route, Navigate, Routes } from "react-router-dom";
-import NotFound from "./page/NotFound";
 import Profile from "./page/Profile";
 import Security from "./page/Security";
 import { useCookies } from "react-cookie";
@@ -23,8 +22,6 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="*" element={<NotFound />} />
-
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
