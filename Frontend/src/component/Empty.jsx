@@ -4,9 +4,9 @@ export default function Empty() {
   return (
     <>
       <div class="py-8 px-4 mx-auto max-w-screen-xl ">
-        <div class="mx-auto max-w-screen-sm text-center items-center">
+        <div class="mx-auto max-w-screen-sm text-center justify-center">
           <svg
-            className="w-6 h-6 text-gray-800"
+            className=" w-32 h-32 text-gray-500"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
