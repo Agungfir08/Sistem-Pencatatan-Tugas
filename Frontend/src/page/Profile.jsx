@@ -3,7 +3,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 export default function Profile() {
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState({});
 
   async function getProfile() {
     await axios
@@ -12,13 +12,16 @@ export default function Profile() {
         if (res.status === 200) {
           alert("Success");
           setUserData(res.data.data);
-          console.log(userData);
         }
       })
       .catch((err) => {
         alert(err);
       });
   }
+
+  useEffect(() => {
+    console.log(userData);
+  }, []);
 
   useEffect(() => {
     getProfile();
