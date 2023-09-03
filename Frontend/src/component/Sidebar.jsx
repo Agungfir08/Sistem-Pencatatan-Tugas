@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -27,7 +27,7 @@ export default function Sidebar() {
       <div className="fixed top-0 left-0 w-64 h-screen  shadow-lg">
         <div className="h-full px-3 py-4 overflow-y-auto bg-white">
           <div className="space-y-2 font-medium">
-            <NavLink
+            <Link
               to={"/"}
               className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
                 location.pathname === "/"
@@ -54,9 +54,9 @@ export default function Sidebar() {
               <span class="flex-1 ml-3 whitespace-nowrap group-hover:text-white">
                 Home
               </span>
-            </NavLink>
+            </Link>
 
-            <NavLink
+            <Link
               to={"/notification"}
               className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
                 location.pathname === "/notification"
@@ -83,9 +83,9 @@ export default function Sidebar() {
               <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
                 Notification
               </span>
-            </NavLink>
+            </Link>
 
-            <NavLink
+            <Link
               to={"/security"}
               className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
                 location.pathname === "/security"
@@ -112,9 +112,9 @@ export default function Sidebar() {
               <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
                 Security
               </span>
-            </NavLink>
+            </Link>
 
-            <NavLink
+            <Link
               to={"/profile"}
               className={`flex items-center p-2  rounded-lg hover:bg-[#28a745] group ${
                 location.pathname === "/profile"
@@ -141,7 +141,7 @@ export default function Sidebar() {
               <span class="flex-1 ml-3 whitespace-nowrap text-[#28a745] group-hover:text-white">
                 Profile
               </span>
-            </NavLink>
+            </Link>
 
             <button
               onClick={deleteToken}
