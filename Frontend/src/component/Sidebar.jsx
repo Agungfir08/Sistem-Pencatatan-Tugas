@@ -27,7 +27,11 @@ export default function Sidebar() {
             <li>
               <NavLink
                 to={"/"}
-                className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group">
+                className="flex items-center p-2 text-[#28a745] rounded-lg hover:bg-[#28a745] group"
+                style={({ isActive }) => ({
+                  backgroundColor: isActive ? "#28a745" : "",
+                  color: isActive ? "white" : "",
+                })}>
                 <svg
                   className="w-6 h-6 text-gray-800 group-hover:stroke-white stroke-[#28a745]"
                   aria-hidden="true"
