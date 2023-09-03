@@ -5,9 +5,9 @@ import axios from "axios";
 export default function Security() {
   const navigate = useNavigate();
   const [data, setAllData] = useState({
-    oldPassword: "",
-    newPassword: "",
-    confirmPassword: "",
+    oldPassword: undefined,
+    newPassword: undefined,
+    confirmPassword: undefined,
   });
 
   function handleChange(e) {
@@ -17,8 +17,12 @@ export default function Security() {
   function submit(e) {
     e.preventDefault();
 
-    if (data.newPassword !== data.confirmPassword || data === "") {
-      return alert("Password not match");
+    if (
+      data.newPassword !== data.confirmPassword ||
+      !data.oldPassword ||
+      !data.newPassword
+    ) {
+      return alert("Something wrong!");
     }
 
     const config = {

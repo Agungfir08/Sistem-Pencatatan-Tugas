@@ -25,8 +25,14 @@ export default function Register() {
   function submit(e) {
     e.preventDefault();
 
-    if (data.password !== data.confirmPassword || data === "") {
-      return alert("Password not match");
+    if (
+      data.password !== data.confirmPassword ||
+      !data.name ||
+      !data.email ||
+      !data.gender ||
+      !data.password
+    ) {
+      return alert("Something wrong!");
     }
 
     const config = {
@@ -48,8 +54,6 @@ export default function Register() {
       )
       .then((res) => {
         if (res.status === 200) {
-          console.log("register berhasil");
-          console.log(res.data);
           navigate("/login");
         }
       })

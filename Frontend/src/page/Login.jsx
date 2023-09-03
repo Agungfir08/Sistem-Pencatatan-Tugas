@@ -24,6 +24,10 @@ export default function Login() {
   function submit(e) {
     e.preventDefault();
 
+    if (!data.email || !data.password) {
+      return alert("Something wrong!");
+    }
+
     const config = {
       headers: {
         "Content-Type": "application/json",
