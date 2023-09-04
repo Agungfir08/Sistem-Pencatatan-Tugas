@@ -21,7 +21,7 @@ export default function App() {
 
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
@@ -68,7 +68,10 @@ export default function App() {
             </LoginRegisRoute>
           }
         />
-      </Routes>
+      </Routes> */}
+      <LayOut>
+        <Profile />
+      </LayOut>
     </>
   );
 }
