@@ -54,7 +54,7 @@ export default function Profile() {
                     </p>
                   ) : (
                     <input
-                      class="appearance-none bg-transparent border-none w-full text-gray-900 text-lg font-bold leading-tight focus:outline-none active:outline-none"
+                      class="p-0 appearance-none bg-transparent border-none w-full text-gray-900 text-lg font-bold leading-tight focus:outline-none active:outline-none"
                       type="text"
                       id="name"
                       name="name"
@@ -74,7 +74,7 @@ export default function Profile() {
                     </p>
                   ) : (
                     <input
-                      class="appearance-none bg-transparent border-none w-full text-gray-900 text-lg font-bold leading-tight focus:outline-none active:outline-none"
+                      class="p-0 appearance-none bg-transparent border-none w-full text-gray-900 text-lg font-bold leading-tight focus:outline-none active:outline-none"
                       type="email"
                       id="email"
                       name="email"
@@ -98,7 +98,7 @@ export default function Profile() {
                       class="appearance-none bg-transparent border-none w-full text-gray-900 text-lg font-bold leading-tight p-0 focus:outline-none active:outline-none"
                       onChange={handleChange}>
                       <option value="" disabled selected>
-                        Select your gender
+                        {userData.gender}
                       </option>
                       <option value="female">Female</option>
                       <option value="male">Male</option>
