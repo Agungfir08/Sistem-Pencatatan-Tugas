@@ -96,10 +96,8 @@ export default function Profile() {
                     <select
                       id="gender"
                       class="appearance-none bg-transparent border-none w-full placeholder-gray-900 text-lg font-bold leading-tight p-0 pt-1 focus:outline-none active:outline-none"
-                      onChange={handleChange}>
-                      <option value="" disabled selected>
-                        {userData.gender}
-                      </option>
+                      onChange={handleChange}
+                      value={userData.gender}>
                       <option value="female">Female</option>
                       <option value="male">Male</option>
                     </select>
