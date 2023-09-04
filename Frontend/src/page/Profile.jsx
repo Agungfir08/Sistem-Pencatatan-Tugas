@@ -27,11 +27,28 @@ export default function Profile() {
     setUserData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   }
 
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
   function changeProfile() {
-    axios.put("https://task-be-ashy.vercel.app/profile", userData).then(() => {
-      alert("Profile changed successfully");
-      navigate("/");
-    });
+    axios
+      .put(
+        "https://task-be-ashy.vercel.app/profile",
+        {
+          name: userData.name,
+          email: userData.email,
+          gender: userData.gender,
+          profile_img: userData.profile_img,
+        },
+        config
+      )
+      .then(() => {
+        alert("Profile changed successfully");
+        navigate("/");
+      });
   }
 
   useEffect(() => {
