@@ -30,6 +30,10 @@ export default function Profile() {
   }
 
   useEffect(() => {
+    console.log(userData);
+  }, [userData]);
+
+  useEffect(() => {
     getProfile();
   }, []);
   return (
