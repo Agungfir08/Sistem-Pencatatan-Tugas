@@ -18,10 +18,11 @@ export default function Profile() {
 
   function editProfile() {
     setEdit((prev) => !prev);
-    if (!edit) {
-      setUserData(fetchData);
-      window.location.reload(true);
-    }
+  }
+
+  function handleCancelClick() {
+    setUserData(originalUserData); // Reset userData to its original state
+    setEdit(false); // Exit edit mode
   }
 
   function handleChange(e) {
@@ -131,7 +132,7 @@ export default function Profile() {
               <button
                 type="button"
                 class=" w-36 text-green-400 bg-white hover:bg-green-600 hover:text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                onClick={editProfile}>
+                onClick={handleCancelClick}>
                 Cancel
               </button>
             )}
