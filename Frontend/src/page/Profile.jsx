@@ -20,6 +20,7 @@ export default function Profile() {
     setEdit((prev) => !prev);
     if (!edit) {
       setUserData(fetchData);
+      window.location.reload(true);
     }
   }
 
