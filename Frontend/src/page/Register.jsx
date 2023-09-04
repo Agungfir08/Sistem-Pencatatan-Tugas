@@ -25,6 +25,16 @@ export default function Register() {
   function submit(e) {
     e.preventDefault();
 
+    if (
+      data.password !== data.confirmPassword ||
+      !data.name ||
+      !data.email ||
+      !data.gender ||
+      !data.password
+    ) {
+      return alert("Something wrong!");
+    }
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -43,13 +53,19 @@ export default function Register() {
         config
       )
       .then((res) => {
-        if (res.data.message === "User Create Success") {
-          localStorage.setItem("token", res.data.token);
-          navigate("/");
+        if (res.status === 200) {
+          alert(res.data.message);
+          navigate("/login");
         }
       })
       .catch((err) => {
-        alert(err);
+        if (err.res) {
+          alert(err.res.data.message);
+          console.log(err.res.data.message);
+        } else {
+          alert(err.message);
+          console.log(err.message);
+        }
       });
   }
 

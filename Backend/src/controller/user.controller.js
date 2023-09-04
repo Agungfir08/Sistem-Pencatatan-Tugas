@@ -44,9 +44,7 @@ const login = async (req, res) => {
       },
     });
 
-
     const { id, name, email } = userExist[0];
-
 
     const match = await bcyrpt.compare(
       req.body.password,
@@ -61,23 +59,23 @@ const login = async (req, res) => {
     const token = jwt.sign({ id, name, email }, process.env.ACCESS_TOKEN, {
       expiresIn: "1w",
     });
-    
-    res.cookie("token", token, {
-      httpOnly: true,
-      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-      sameSite: 'none',
-      httpOnly: true,
-      secure: true
-    })
-    .status(200)
-    .json({
-      status: 200,
-      message: "Login Berhasil",
-      id: userExist[0].id,
-      name: userExist[0].name,
-      token: token,
-    });
 
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        sameSite: "none",
+        httpOnly: true,
+        secure: true,
+      })
+      .status(200)
+      .json({
+        status: 200,
+        message: "Login Berhasil",
+        id: userExist[0].id,
+        name: userExist[0].name,
+        token: token,
+      });
   } catch (error) {
     res.status(400).json({
       status: 400,
@@ -98,33 +96,24 @@ const testMiddleware = (req, res) => {
   console.log("Midlleware");
 };
 
-const getUserProfile = (req, res) =>{
-  console.log(req.id)
-  try{
-    user.findAll({
-      where:{
-        id: req.id
-      },
-      attributes:[
-        'id',
-        'name',
-        'email',
-        'name',
-        'gender',
-        'profile_img'
-      ]
-    }).then(
-      result =>{
-        res.status(200)
-        .json({data: result})
-      }
-    )
-  }catch(err){
-    res.status(500)
-    .json({
-      message: err.message
-    })
+const getUserProfile = (req, res) => {
+  console.log(req.id);
+  try {
+    user
+      .findAll({
+        where: {
+          id: req.id,
+        },
+        attributes: ["id", "email", "name", "gender", "profile_img"],
+      })
+      .then((result) => {
+        res.status(200).json({ result });
+      });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
   }
-}
+};
 
 export { register, login, testMiddleware, logout, getUserProfile };

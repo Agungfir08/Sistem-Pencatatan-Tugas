@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+axios.defaults.withCredentials = true;
 
 export default function Login() {
+  const [_, setCookies] = useCookies(["token"]);
   let navigate = useNavigate();
   const [data, setData] = useState({
     email: undefined,
@@ -22,6 +24,10 @@ export default function Login() {
   function submit(e) {
     e.preventDefault();
 
+    if (!data.email || !data.password) {
+      return alert("Something wrong!");
+    }
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -38,15 +44,20 @@ export default function Login() {
         config
       )
       .then((res) => {
-        // let {token} = res.data
-        //     console.log(token)
-        // Cookies.set('token', res.data.token)
-        localStorage.setItem("token", res.data.token);
-        navigate("/");
-        // navigate("/home")
+        if (res.status === 200) {
+          alert(res.data.message);
+          setCookies("token", res.data.token);
+          navigate("/");
+        }
       })
       .catch((err) => {
-        alert(err);
+        if (err.res) {
+          alert(err.res.data.message);
+          console.log(err.res.data.message);
+        } else {
+          alert(err.message);
+          console.log(err.message);
+        }
       });
   }
 

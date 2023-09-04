@@ -1,83 +1,74 @@
 import * as React from "react";
 import Login from "./page/Login";
 import Home from "./page/Home";
-import Sidebar from "./component/Sidebar";
 import Notification from "./page/Notification";
 import Register from "./page/Register";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-  Route,
-  Navigate,
-  BrowserRouter,
-  Routes,
-} from "react-router-dom";
-import NotFound from "./page/NotFound";
-import Tes from "./context/tes";
+import { Route, Navigate, Routes } from "react-router-dom";
 import Profile from "./page/Profile";
-import Cookies from "js-cookie";
-// import Cookies from 'universal-cookie';
+import Security from "./page/Security";
+import { useCookies } from "react-cookie";
 import LayOut from "./layout/layout";
 
 export default function App() {
+  const [cookies, setCookies] = useCookies(["token"]);
   const LoginRegisRoute = (props) => {
-    // if (Cookies.get('token') === undefined) {
-    //     return <Navigate to={'/login'} />
-    // } else if (Cookies.get('token') !== undefined) {
-    //     return props.children
-    // }
-    if (localStorage.getItem("token") === null) {
-      return <Navigate to={"/login"} />;
-    } else if (localStorage.getItem("token") !== null) {
+    if (!cookies.token) {
+      return <Navigate to="/login" />;
+    } else {
       return props.children;
     }
   };
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<NotFound />} />
+      <Routes>
+        <Route path="/login" element={<Login />} />
 
-          <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-          <Route path="/register" element={<Register />} />
+        <Route
+          path="/"
+          element={
+            <LoginRegisRoute>
+              <LayOut>
+                <Home />
+              </LayOut>
+            </LoginRegisRoute>
+          }
+        />
+        <Route
+          path="/notification"
+          element={
+            <LoginRegisRoute>
+              <LayOut>
+                <Notification />
+              </LayOut>
+            </LoginRegisRoute>
+          }
+        />
 
-          <Route
-            path="/"
-            element={
-              <LoginRegisRoute>
-                <LayOut>
-                  <Home />
-                </LayOut>
-              </LoginRegisRoute>
-            }
-          />
+        <Route
+          path="/profile"
+          element={
+            <LoginRegisRoute>
+              <LayOut>
+                <Profile />
+              </LayOut>
+            </LoginRegisRoute>
+          }
+        />
 
-          <Route
-            path="/notification"
-            element={
-              <LoginRegisRoute>
-                <LayOut>
-                  <Notification />
-                </LayOut>
-              </LoginRegisRoute>
-            }
-          />
-
-          {/* <Route
-            path="/profile"
-            element={
-              <LoginRegisRoute>
-                <LayOut>
-                  <Profile />
-                </LayOut>
-              </LoginRegisRoute>
-            }
-          /> */}
-        </Routes>
-      </BrowserRouter>
+        <Route
+          path="/security"
+          element={
+            <LoginRegisRoute>
+              <LayOut>
+                <Security />
+              </LayOut>
+            </LoginRegisRoute>
+          }
+        />
+      </Routes>
     </>
   );
 }

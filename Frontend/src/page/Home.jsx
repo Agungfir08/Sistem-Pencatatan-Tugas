@@ -3,6 +3,7 @@ import { useState } from "react";
 import Task from "../component/Task";
 import axios from "axios";
 import "flowbite";
+import Empty from "../component/Empty";
 axios.defaults.withCredentials = true;
 
 export default function Home() {
@@ -42,8 +43,8 @@ export default function Home() {
     });
   }
 
-  function getTask() {
-    axios.get(`https://task-be-ashy.vercel.app/task`).then((res) => {
+  async function getTask() {
+    await axios.get(`https://task-be-ashy.vercel.app/task`).then((res) => {
       setTasks(res.data.data);
     });
   }
@@ -267,6 +268,7 @@ export default function Home() {
         ) : null}
       </div>
       <div className="flex flex-wrap ml-72">
+        {tasks.length === 0 && <Empty />}
         {tasks.map((task) => (
           <Task key={task.id} task={task} />
         ))}
