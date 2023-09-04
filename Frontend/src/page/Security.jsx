@@ -32,7 +32,7 @@ export default function Security() {
     };
 
     axios
-      .post(
+      .put(
         "https://task-be-ashy.vercel.app/changePassword",
         {
           oldPass: data.oldPassword,
