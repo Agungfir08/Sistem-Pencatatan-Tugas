@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 export default function Profile() {
   const [userData, setUserData] = useState({});
   const [edit, setEdit] = useState(false);
+  const navigate = useNavigate();
 
   async function getProfile() {
     await axios.get("https://task-be-ashy.vercel.app/profile").then((res) => {
@@ -23,6 +25,7 @@ export default function Profile() {
   function changeProfile() {
     axios.put("https://task-be-ashy.vercel.app/profile", userData).then(() => {
       alert("Profile changed successfully");
+      navigate("/");
     });
   }
 
