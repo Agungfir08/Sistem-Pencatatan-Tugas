@@ -21,9 +21,9 @@ export const Task = database.define(
       type: DataTypes.TEXT('long')
     },
     deadline:{
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       allowNull: false
-    }, //2023-08-31T
+    }, 
     is_done:{
       type: DataTypes.BOOLEAN,
       defaultValue: false
