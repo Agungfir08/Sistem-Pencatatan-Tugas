@@ -5,17 +5,22 @@ axios.defaults.withCredentials = true;
 
 export default function Profile() {
   const [userData, setUserData] = useState({});
+  const [fetchData, setFetchData] = useState({});
   const [edit, setEdit] = useState(false);
   const navigate = useNavigate();
 
   async function getProfile() {
     await axios.get("https://task-be-ashy.vercel.app/profile").then((res) => {
       setUserData(res.data.data[0]);
+      setFetchData(res.data.data[0]);
     });
   }
 
   function editProfile() {
     setEdit((prev) => !prev);
+    if (!edit) {
+      setUserData(fetchData);
+    }
   }
 
   function handleChange(e) {
@@ -133,7 +138,8 @@ export default function Profile() {
             <button
               disabled={!edit}
               type="submit"
-              class=" w-36 text-white bg-green-400 hover:bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+              class=" w-36 text-white bg-green-400 hover:bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              onSubmit={changeProfile}>
               Save changes
             </button>
           </div>
