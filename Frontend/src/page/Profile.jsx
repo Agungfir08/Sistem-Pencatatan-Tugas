@@ -63,6 +63,7 @@ export default function Profile() {
                       id="name"
                       name="name"
                       placeholder={userData.name}
+                      onChange={handleChange}
                     />
                   )}
                 </div>
@@ -83,6 +84,7 @@ export default function Profile() {
                       id="email"
                       name="email"
                       placeholder={userData.email}
+                      onChange={handleChange}
                     />
                   )}
                 </div>
