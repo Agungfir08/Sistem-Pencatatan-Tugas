@@ -43,9 +43,6 @@ const tes = (req, res) => {
 
 // login
 const login = async (req, res) => {
-  // res.json({
-  //   message: "tes",
-  // });
   console.log("lah bos");
   try {
     const userExist = await user.findAll({
@@ -118,7 +115,7 @@ const login = async (req, res) => {
 
 const logout = (req, res) => {
   const token = req.cookies.token;
-  if (!token) res.sendStatus(403);
+  if (!token) return res.status(403).json({ msg: "Token is Empty" });
 
   res.clearCookie("token");
   return res.sendStatus(200);
@@ -148,4 +145,4 @@ const getUserProfile = (req, res) => {
   }
 };
 
-export { tes, register, login, testMiddleware, logout, getUserProfile };
+export { tes, register, testMiddleware, logout, login, getUserProfile };

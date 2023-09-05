@@ -11,10 +11,10 @@ import verifyToken from "../middleware/verifyToken.js";
 const taskRouter = Express.Router();
 
 taskRouter.get("/task/:user_id", verifyToken, getAllTask);
-taskRouter.post("/task", createTask);
-taskRouter.put("/task/:id", updateTask);
-taskRouter.delete("/task/:id/delete", deleteTask);
-taskRouter.get("/task/notification", getTaskNotification);
-taskRouter.get("/task/filter", filterTask);
+taskRouter.post("/task", verifyToken, createTask);
+taskRouter.put("/task/:id", verifyToken, updateTask);
+taskRouter.delete("/task/:id/delete", verifyToken, deleteTask);
+taskRouter.get("/task/notification", verifyToken, getTaskNotification);
+taskRouter.get("/task/filter", verifyToken, filterTask);
 
 export default taskRouter;
