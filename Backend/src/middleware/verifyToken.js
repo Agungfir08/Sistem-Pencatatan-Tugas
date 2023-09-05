@@ -9,9 +9,12 @@ const verifyToken = (req, res, next) => {
   // });
   // const token = req.cookies.token;
   if (!token) return res.status(401).json({ message: "Token is Empty" });
+
   jwt.verify(token, process.env.ACCESS_TOKEN, (err, decoded) => {
     // console.log(err);
-    if (err) return res.status(403).json({ message: err });
+
+    req.id = decoded.id;
+    console.log("Verifikasi Token Berhasil");
     next();
     // res.json({
     //   message: "verfifkasi berhasil",

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+
+axios.defaults.withCredentials = true;
 
 export default function Register() {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: undefined,
     email: undefined,
@@ -21,6 +25,16 @@ export default function Register() {
   function submit(e) {
     e.preventDefault();
 
+    if (
+      data.password !== data.confirmPassword ||
+      !data.name ||
+      !data.email ||
+      !data.gender ||
+      !data.password
+    ) {
+      return alert("Something wrong!");
+    }
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +43,7 @@ export default function Register() {
 
     axios
       .post(
-        "http://localhost:4000/register",
+        "https://task-be-ashy.vercel.app/register",
         {
           name: data.name,
           email: data.email,
@@ -39,12 +53,19 @@ export default function Register() {
         config
       )
       .then((res) => {
-        if (res.data.message === "User Create Success") {
-          alert("Register berhasil");
+        if (res.status === 200) {
+          alert(res.data.message);
+          navigate("/login");
         }
       })
       .catch((err) => {
-        alert(err.message);
+        if (err.res) {
+          alert(err.res.data.message);
+          console.log(err.res.data.message);
+        } else {
+          alert(err.message);
+          console.log(err.message);
+        }
       });
   }
 
@@ -136,17 +157,17 @@ export default function Register() {
               </div>
               <button
                 type="submit"
-                class="w-full text-white bg-green-400 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                class="w-full text-white bg-green-400 hover:bg-green-600  font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                 Register
               </button>
               <div class="flex justify-center">
                 <p class="text-sm font-light text-gray-500">
                   Already have an account?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    to="/login"
                     class="font-medium text-green-400 hover:underline">
                     Login
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>

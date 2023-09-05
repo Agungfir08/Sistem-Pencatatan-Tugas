@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+axios.defaults.withCredentials = true;
 
 export default function Login() {
+  const [_, setCookies] = useCookies(["token"]);
+  let navigate = useNavigate();
   const [data, setData] = useState({
     email: undefined,
     password: undefined,
@@ -18,6 +24,10 @@ export default function Login() {
   function submit(e) {
     e.preventDefault();
 
+    if (!data.email || !data.password) {
+      return alert("Something wrong!");
+    }
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +36,7 @@ export default function Login() {
 
     axios
       .post(
-        "http://localhost:4000/login",
+        "https://task-be-ashy.vercel.app/login",
         {
           email: data.email,
           password: data.password,
@@ -34,16 +44,23 @@ export default function Login() {
         config
       )
       .then((res) => {
-        if (res.data.message === "Login Berhasil") {
-          console.log(res.data);
+        if (res.status === 200) {
+          alert(res.data.message);
+          setCookies("token", res.data.token);
+          navigate("/");
         }
       })
       .catch((err) => {
-        alert(err.message);
+        if (err.res) {
+          alert(err.res.data.message);
+          console.log(err.res.data.message);
+        } else {
+          alert(err.message);
+          console.log(err.message);
+        }
       });
   }
 
-  //localhost:4000/register
   return (
     <section class="bg-gray-50">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -91,18 +108,18 @@ export default function Login() {
                 </a>
               </div>
               <button
-                type="submit"
-                class="w-full text-white bg-green-400 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                type={"submit"}
+                class="w-full text-white bg-green-400 hover:bg-green-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                 Login
               </button>
               <div class="flex justify-center">
                 <p class="text-sm font-light text-gray-500">
                   Dont have an account?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    to="/register"
                     class="font-medium text-green-400 hover:underline">
                     Register
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>

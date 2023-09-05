@@ -51,12 +51,13 @@ const login = async (req, res) => {
       });
 
     const { id, name, email } = userExist[0];
+
     const match = await bcyrpt.compare(
       req.body.password,
       userExist[0].password
     );
     if (!match)
-      res.status(400).json({
+      return res.status(400).json({
         status: 400,
         message: "Wrong Password",
       });
@@ -98,6 +99,7 @@ const login = async (req, res) => {
       name: userExist[0].name,
       token: accessToken,
     });
+
   } catch (error) {
     res.json({
       message: error.message,
@@ -110,14 +112,31 @@ const logout = (req, res) => {
   if (!token) res.sendStatus(403);
 
   res.clearCookie("token");
-  return res.status(200).json({
-    status: 200,
-    message: "Log Out Berhasil",
-  });
+  return res.sendStatus(200);
 };
 
 const testMiddleware = (req, res) => {
   console.log("Midlleware");
 };
 
-export { register, login, testMiddleware, logout };
+const getUserProfile = (req, res) => {
+  console.log(req.id);
+  try {
+    user
+      .findAll({
+        where: {
+          id: req.id,
+        },
+        attributes: ["id", "email", "name", "gender", "profile_img"],
+      })
+      .then((result) => {
+        res.status(200).json({ result });
+      });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+export { register, login, testMiddleware, logout, getUserProfile };
