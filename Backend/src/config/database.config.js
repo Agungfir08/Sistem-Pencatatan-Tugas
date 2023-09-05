@@ -2,8 +2,13 @@ import Sequelize from "sequelize";
 
 import mysql2 from "mysql2";
 
-const database = new Sequelize("sql12643089", "sql12643089", "gtwB8A5jCX", {
-  host: "sql12.freesqldatabase.com",
+// const database = new Sequelize("sql12643089", "sql12643089", "gtwB8A5jCX", {
+//   host: "sql12.freesqldatabase.com",
+//   dialect: "mysql",
+//   dialectModule: mysql2,
+// });
+const database = new Sequelize("task_list", "root", "", {
+  host: "localhost",
   dialect: "mysql",
   dialectModule: mysql2,
 });

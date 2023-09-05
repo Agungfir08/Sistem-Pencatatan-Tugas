@@ -23,6 +23,10 @@ const user = database.define(
     },
     gender: DataTypes.STRING,
     profile_img: DataTypes.STRING,
+    token: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     freezeTableName: true, // menghilangkan s (user(s))
