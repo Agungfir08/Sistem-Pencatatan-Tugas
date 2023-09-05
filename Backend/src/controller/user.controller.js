@@ -35,8 +35,17 @@ const register = async (req, res) => {
   }
 };
 
+const tes = (req, res) => {
+  res.json({
+    msg: " test",
+  });
+};
+
 // login
 const login = async (req, res) => {
+  // res.json({
+  //   message: "tes",
+  // });
   try {
     const userExist = await user.findAll({
       where: {
@@ -99,7 +108,6 @@ const login = async (req, res) => {
       name: userExist[0].name,
       token: accessToken,
     });
-
   } catch (error) {
     res.json({
       message: error.message,
@@ -139,4 +147,4 @@ const getUserProfile = (req, res) => {
   }
 };
 
-export { register, login, testMiddleware, logout, getUserProfile };
+export { tes, register, login, testMiddleware, logout, getUserProfile };
