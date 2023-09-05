@@ -46,6 +46,7 @@ const login = async (req, res) => {
   // res.json({
   //   message: "tes",
   // });
+  console.log("lah bos");
   try {
     const userExist = await user.findAll({
       where: {
@@ -82,7 +83,7 @@ const login = async (req, res) => {
       { id, name, email },
       process.env.ACCESS_TOKEN,
       {
-        expiresIn: "1d",
+        expiresIn: "30s",
       }
     );
 
