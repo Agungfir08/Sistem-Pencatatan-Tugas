@@ -23,7 +23,7 @@ const user = database.define(
     },
     gender: DataTypes.STRING,
     profile_img: DataTypes.STRING,
-    token: {
+    refresh_token: {
       type: DataTypes.STRING,
       allowNull: true,
     },

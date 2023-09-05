@@ -82,7 +82,7 @@ const login = async (req, res) => {
     });
 
     await user.update(
-      { token: refreshToken },
+      { refresh_token: refreshToken },
       {
         where: {
           id: id,
