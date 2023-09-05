@@ -7,6 +7,7 @@ const database = new Sequelize("sql12643089", "sql12643089", "gtwB8A5jCX", {
   dialect: "mysql",
   dialectModule: mysql2,
 });
+
 // const database = new Sequelize("task_list", "root", "", {
 //   host: "localhost",
 //   dialect: "mysql",

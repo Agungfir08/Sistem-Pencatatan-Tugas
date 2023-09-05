@@ -3,40 +3,38 @@ import database from "../config/database.config.js";
 import user from "./user.model.js";
 
 export const Task = database.define(
-  'tasks',
+  "tasks",
   {
-    user_id:{
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references:{
+      references: {
         model: user,
-        key: 'id'
-      }
+        key: "id",
+      },
     },
-    judul:{
+    judul: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
-    deskripsi:{
-      type: DataTypes.TEXT('long')
+    deskripsi: {
+      type: DataTypes.TEXT("long"),
     },
-    deadline:{
+    deadline: {
       type: DataTypes.DATE,
-      allowNull: false
-    }, 
-    is_done:{
+      allowNull: false,
+    },
+    is_done: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
-    }
+      defaultValue: false,
+    },
   },
   {
     freezeTableName: true,
   }
+);
+const syncTask = async () => {
+  await Task.sync();
+};
 
-)
-const syncTask = async () =>{
-  await Task.sync()   
-}
-
-syncTask()
-
+syncTask();
