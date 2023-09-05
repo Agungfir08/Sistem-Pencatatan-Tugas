@@ -2,19 +2,17 @@ import user from "../model/user.model.js";
 import jwt, { decode } from "jsonwebtoken";
 
 const refreshToken = async (req, res) => {
-  console.log("dawdkdnkw dwaudgw");
   try {
     const token = req.cookies.token;
-    console.log(token);
+    if (!token) return res.json({ msg: "Token is Empty" });
     const userExist = await user.findAll({
       where: {
         refresh_token: token,
       },
     });
-    if (!userExist[0]) return res.status(401).json({ message: "dkwandwkjwd" });
-
+    if (!userExist[0]) return res.status(401);
     jwt.verify(token, process.env.ACCESS_TOKEN, (err, decoded) => {
-      if (err) return res.sendStatus(403);
+      if (err) return res.json({ err });
       const { id, name, email } = userExist[0];
       const accessToken = jwt.sign(
         { id, name, email },
@@ -23,13 +21,17 @@ const refreshToken = async (req, res) => {
           expiresIn: "20s",
         }
       );
-      return res.status(200).json({
+      return res.json({
         accessToken,
+        // id,
       });
     });
+    // res.json({
+    //   token: "sdsd",
+    // });
   } catch (error) {
-    return res.status(500).json({
-      message: "Something Wrong",
+    res.json({
+      error,
     });
   }
 };
