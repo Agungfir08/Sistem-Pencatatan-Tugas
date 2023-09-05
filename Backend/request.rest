@@ -1,8 +1,21 @@
-POST http://localhost:4000/register
+POST http://localhost:4000/login
 Content-Type: application/json
 
 {
     "email" : "user3@gmail.com",
     "nama" : "user2",
+    "password" :  "12345678"
+}
+
+###
+GET http://localhost:4000/verifyToken
+Content-Type: application/json
+
+###
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "email" : "user3@gmail.com",
     "password" :  "12345678"
 }

@@ -7,7 +7,20 @@ const database = new Sequelize('sql12643089', 'sql12643089', 'gtwB8A5jCX', {
   dialectModule: mysql2
 })
 
-try{
+
+const database = new Sequelize("sql12643089", "sql12643089", "gtwB8A5jCX", {
+  host: "sql12.freesqldatabase.com",
+  dialect: "mysql",
+  dialectModule: mysql2,
+});
+
+// const database = new Sequelize("task_list", "root", "", {
+//   host: "localhost",
+//   dialect: "mysql",
+//   dialectModule: mysql2,
+// });
+
+try {
   database.authenticate();
   console.log('db is connected')
 } catch(err){

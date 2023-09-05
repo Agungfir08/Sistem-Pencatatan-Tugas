@@ -1,9 +1,10 @@
-import { Task } from '../model/task.model.js';
-import user from '../model/user.model.js';
-import schedule from 'node-schedule';
-import { Op } from 'sequelize';
+import { Task } from "../model/task.model.js";
+import user from "../model/user.model.js";
+import schedule from "node-schedule";
+import { Op } from "sequelize";
 
 export const getAllTask = async (req, res) => {
+
 	try {
 		if (!req.params.user_id) {
 			return res.status(401).json({ message: 'user id not included!' });
@@ -110,28 +111,28 @@ export const getTaskNotification = async (req, res) => {
 			attributes: ['id', 'judul', 'deskripsi', 'deadline'],
 		});
 
-		const messages = [];
+    const messages = [];
 
-		dataTask.map((data) => {
-			const date = new Date(data.deadline);
-			const HoursDifference = date.getTime() - Date.now();
+    dataTask.map((data) => {
+      const date = new Date(data.deadline);
+      const HoursDifference = date.getTime() - Date.now();
 
-			if (HoursDifference > 0) {
-				messages.push({
-					judul: data.judul,
-					message: `Task due ${HoursDifference} hours to go. Do it immidiately.`,
-				});
-			}
-		});
-		return res.json({ messages });
-	} catch (err) {
-		return res.status(500).json({ message: err.message });
-	}
+      if (HoursDifference > 0) {
+        messages.push({
+          judul: data.judul,
+          message: `Task due ${HoursDifference} hours to go. Do it immidiately.`,
+        });
+      }
+    });
+    return res.json({ messages });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
 };
 
 export const filterTask = async (req, res) => {
-	const judul = req.query.judul;
-	const status = req.query.status;
+  const judul = req.query.judul;
+  const status = req.query.status;
 
 	let taskFilter;
 	try {

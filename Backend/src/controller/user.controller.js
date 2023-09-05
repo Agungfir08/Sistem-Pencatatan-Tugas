@@ -44,6 +44,12 @@ const login = async (req, res) => {
       },
     });
 
+    if (!userExist[0])
+      return res.status(400).json({
+        status: 400,
+        message: "Email Not Found",
+      });
+
     const { id, name, email } = userExist[0];
 
     const match = await bcyrpt.compare(
@@ -56,29 +62,46 @@ const login = async (req, res) => {
         message: "Wrong Password",
       });
 
-    const token = jwt.sign({ id, name, email }, process.env.ACCESS_TOKEN, {
-      expiresIn: "1w",
+    const accessToken = jwt.sign(
+      { id, name, email },
+      process.env.ACCESS_TOKEN,
+      {
+        expiresIn: "20s",
+      }
+    );
+    const refreshToken = jwt.sign(
+      { id, name, email },
+      process.env.ACCESS_TOKEN,
+      {
+        expiresIn: "1d",
+      }
+    );
+
+    res.cookie("token", refreshToken, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 3600000),
     });
 
-    res
-      .cookie("token", token, {
-        httpOnly: true,
-        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        sameSite: "none",
-        httpOnly: true,
-        secure: true,
-      })
-      .status(200)
-      .json({
-        status: 200,
-        message: "Login Berhasil",
-        id: userExist[0].id,
-        name: userExist[0].name,
-        token: token,
-      });
+    await user.update(
+      { refresh_token: refreshToken },
+      {
+        where: {
+          id: id,
+        },
+      }
+    );
+
+    res.status(200).json({
+      status: 200,
+      message: "Login Berhasil",
+      id: userExist[0].id,
+
+      name: userExist[0].name,
+      token: accessToken,
+    });
+
   } catch (error) {
-    res.status(400).json({
-      status: 400,
+    res.json({
       message: error.message,
     });
   }
